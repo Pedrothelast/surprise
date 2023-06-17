@@ -1,3 +1,151 @@
+
+
+//----------------------------------------------------------------
+//Página de Cadastro
+//Para ler os dados inseridos no formulário de cadastro
+function leDados() {
+  let strDados = localStorage.getItem('db');
+  let objDados = {};
+
+  if (strDados) {
+
+      objDados = JSON.parse(strDados);
+  }
+  else {
+      objDados = {
+          cadastros: [
+              {
+                  id: "1",
+                  nome: 'Filipe Ferreira Diniz',
+                  username: 'felps_fd',
+                  email: 'eu.filipediniz@gmail.com',
+                  data: '30/03/2004',
+                  senha: '123456',
+                  confirme: '123456'
+              },
+          ]
+      }
+  }
+  return objDados
+}
+
+
+function salvaDados(dados) {
+  localStorage.setItem('db', JSON.stringify(dados));
+
+}
+
+function incluirCadastro() {
+  //ler os dados do localstorage
+  let objDados = leDados();
+
+
+  //incluir um novo contato
+  let strid = (objDados.cadastros.length) +1;
+  let strNome = document.getElementById('nome').value;
+  let strUsername = document.getElementById('username').value;
+  let strEmail = document.getElementById('email').value;
+  let strData = document.getElementById('data').value;
+  let strSenha = document.getElementById('senha').value;
+  let strConfirmarSenha = document.getElementById('confirme').value;
+  
+
+  //condição para verificar se a senha é a mesma
+  if (strSenha !== strConfirmarSenha) {
+      let msgerro = document.querySelector('#msgerro')
+      msgerro.setAttribute('style', 'display:block')
+      msgerro.innerHTML = '<strong>As senhas não coincidem!</strong>'
+      setTimeout(()=>{msgerro.setAttribute('style', 'display:none')},3000)
+      return;
+  }
+  else{
+      //para aparecer a mensagem de sucesso
+      let msgsucesso = document.querySelector('#msgsucesso')
+      msgsucesso.setAttribute('style', 'display:block')
+      msgsucesso.innerHTML = '<strong>Cadastro efetuado com sucesso!</strong>'
+      setTimeout(()=>{location.href='cadastros.html'},3000)
+      // recarrega a página sem usar o cache do navegador
+      
+
+  }
+  
+  //variavel modelo que sera impresso na tela após o cadastro
+  let novoCadastro = {
+      id: strid,
+      nome: strNome,
+      username: strUsername,
+      email: strEmail,
+      data: strData,
+      senha: strSenha,
+      confirme: strConfirmarSenha
+  };
+
+  objDados.cadastros.push(novoCadastro);
+
+  //salvar dados no localstorage
+  salvaDados(objDados);
+
+  // redireciona o usuário para a página de exibição de dados
+  
+
+  //atualiza
+  imprimeDados();
+
+}
+
+
+
+
+
+//configurando botão de concluir cadastro e ir para a outra página mostrando os resultados
+
+document.getElementById('btnConcluirCadastro').addEventListener("click", validarFormulario);
+
+function validarFormulario() {
+  // Obtém os valores dos campos do formulário
+  let strNome = document.getElementById('nome').value;
+  let strUsername = document.getElementById('username').value;
+  let strEmail = document.getElementById('email').value;
+  let strData = document.getElementById('data').value;
+  let strSenha = document.getElementById('senha').value;
+  let strConfirmarSenha = document.getElementById('confirme').value;
+
+  // Verifica se todos os campos estão preenchidos
+  if (strNome !== "" && strUsername !== "" && strEmail !== "" && strData !== "" && strSenha !== "" && strConfirmarSenha !== ""){
+    // Todos os campos estão preenchidos, execute a função desejada
+    incluirCadastro();
+  } else {
+    // Exiba uma mensagem de erro ou tome alguma ação
+    let msgfaltainfo = document.querySelector('#msgfaltainfo')
+      msgfaltainfo.setAttribute('style', 'display:block')
+      msgfaltainfo.innerHTML = '<strong>PREENCHA TODOS OS CAMPOS PARA PROSSEGUIR!</strong>'
+      setTimeout(()=>{msgfaltainfo.setAttribute('style', 'display:none')},2700)
+  }
+}
+
+
+//para visualizar as senhas ocultas
+const toggleSenha = document.querySelector('#toggleSenha');
+const senha = document.querySelector('#senha');
+toggleSenha.addEventListener('click', function () {
+  const tipo = senha.getAttribute('type') === 'password' ? 'text' : 'password';
+  senha.setAttribute('type', tipo);
+  this.classList.toggle('fa-eye-slash');
+  this.classList.toggle('fa-eye');
+});
+const toggleConfirme = document.querySelector('#toggleConfirme');
+const confirme = document.querySelector('#confirme');
+toggleConfirme.addEventListener('click', function () {
+  const tipo = confirme.getAttribute('type') === 'password' ? 'text' : 'password';
+  confirme.setAttribute('type', tipo);
+  this.classList.toggle('fa-eye-slash');
+  this.classList.toggle('fa-eye');
+});
+
+
+
+//----------------------------------------------------------------
+//Cadastro de Filmes
 function lerDados() {
     let strDados = localStorage.getItem('db');
     let objDados = {};

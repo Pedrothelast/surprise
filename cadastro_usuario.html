@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+</head>
+
+<body>
+    <div class="fundo">
+        <img src="logo.png" alt="" class="logoo" width="200px">
+        <div id="formCadastros">
+          <div class="input-group">
+            <label for="nome">Nome Completo:</label>
+            <input class="inserir" type="text" id="nome" required>
+          </div>
+          <div class="input-group">
+            <label for="username">Username:</label>
+            <input class="inserir" type="text" id="username" required>
+          </div>
+          <div class="input-group">
+            <label for="email">Email:</label>
+            <input class="inserir" type="email" id="email" required>
+          </div>
+          <div class="input-group">
+            <label for="data">Data de Nascimento:</label>
+            <input class="inserir date" type="date" id="data"required>
+          </div>
+          <div class="input-group">
+            <label for="senha">Senha:</label>
+            <input class="inserir" type="password" id="senha" required>
+            <i class="fa fa-eye-slash" aria-hidden="true" id="toggleSenha" style="padding-right: 5px;"></i>
+          </div>
+          <div class="input-group">
+            <label for="confirme">Confirme sua senha:</label>
+            <input class="inserir" type="password" id="confirme" required>
+            <i class="fa fa-eye-slash" aria-hidden="true" id="toggleConfirme" style="padding-right: 5px;"></i>
+          </div>
+          <button type="submit" id="btnConcluirCadastro">Concluir cadastro</button>
+          <div id="msgsucesso"></div>
+          <div id="msgerro"></div>
+          <div id="msgfaltainfo"></div>
+        </div>
+      </div>
+      
+      
+
+    <script src="app.js"></script>
+</body>
+
+</html>
