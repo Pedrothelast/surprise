@@ -1,0 +1,191 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.index-page{
+    background-color: black;
+}
+.index-page h1{
+        text-align: center;
+        font-family: arial;
+        color: white;
+}
+.index-page .pesquisar{
+    margin: 20px;
+    background-color: rgb(231, 105, 2);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+.index-page .pesquisar a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+#formCadastroFilme {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgb(223, 223, 223);
+    padding: 15px;
+    margin: 10px 60px 10px 60px;
+    border-radius: 10px;
+  }
+  
+  .column {
+    flex: 1 1 33.33%;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .input-group label {
+    margin-right: 10px;
+    flex-basis: 100px;
+    padding: 5px;
+    text-align: end;
+    font-weight: bold;
+  }
+  
+  #formCadastroFilme input {
+    margin: 8px;
+    padding: 5px;
+    width: 200px;
+    vertical-align: middle;
+    border: none;
+    border-radius: 5px;
+  }
+  .button-group{
+    display: flex;
+    flex-direction: row;
+        margin: 10px 60px 10px 60px;
+    background-color: rgb(223, 223, 223);
+    justify-content: center;
+  }
+  .botao-cadastro {
+    width: 100px;
+    justify-content: center;
+    margin: 30px 10px 5px;
+    color: white;
+    background-color: rgb(231, 105, 2);
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 130px;
+  }
+  .botao-cadastro:hover{
+    cursor: pointer;
+    background-color: rgb(146, 67, 2);
+  }
+  
+  .listar{
+    justify-content: center;
+    text-align: center;
+}
+  #btnCarregaFilme{
+    margin: 20px;
+    background-color: rgb(231, 105, 2);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+#btnCarregaFilme:hover{
+    cursor: pointer;
+    background-color: rgb(146, 67, 2);
+}
+.pesquisar:hover{
+    cursor: pointer;
+    background-color: rgb(146, 67, 2);
+}
+
+/*----------------------------------------------------------------*/
+.resultado{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+.capa{
+    width: 200px;
+    height: 290px;
+}
+#back-v{
+   margin: 20px;
+   background-color: rgb(231, 105, 2);
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+.barra-pesquisa{
+    text-align: center;
+    margin-top: 20px;
+}
+.botao-pesquisa{
+    text-align: center;
+}
+.botao-pesquisa button{
+    background-color: orange;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+.barra-pesquisa button{
+    background-color: orange;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+.barra-pesquisa p{
+    color: white;
+    margin: 10px;
+    font-weight: bold;
+}
+.resultados-filmes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div .filmes{
+    background-color: rgb(231, 105, 2);
+    padding: 20px;
+    margin: 40px;
+    width: 80%;
+    /* margin-left: 430px; */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+}
+div .filmes div .title-img{
+    display: flex;
+    flex-direction: column;
+}
+
+div.filmes div.info-filmes{
+    display: flex;
+    padding-left: 20px;
+}
+#tela{
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
