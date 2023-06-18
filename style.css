@@ -44,10 +44,16 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    
 }
-
+/* texto animado */
 .surprise-centro{
     display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 .surprise-centro-titulo{
     display: flex;
@@ -60,6 +66,7 @@
 .surprise-centro-titulo .text-dinamico{
     margin-left: 15px;
     height: 100px;
+    
 }
 
 .surprise-centro-titulo .text-dinamico li{
@@ -83,7 +90,7 @@
     background: black;
     width: 100%;
     height: 100%;
-    border-left: 2px solid #9800ce;
+    border-left: 2px solid rgb(220, 99, 0);
     animation: typin 2s steps(15) infinite ;
 }
 
@@ -103,9 +110,7 @@
     filter: drop-shadow(3px 5px 6px rgb(213, 114, 0));
 }
 
-
-
-
+/* meio - subtitulo e botao */
 .subtitulo{
     font-size: 17px;
 
@@ -118,8 +123,6 @@
     background-color:  rgb(231, 105, 2);
     border: none;
     font-weight: bold;
-    
-    float: right;
 }
 .link-suprise{
     color: white;
@@ -131,9 +134,244 @@
     transition: 0.5s;
     box-shadow: 0 0 10px 5px rgb(255, 176, 123);
 }
-
+/* media queries */
+@media (max-width: 768px) {
+    .titulo{
+    }
+    .surprise-centro-titulo{
+        flex-direction: column;
+        align-items: center;
+    }
+    .surprise-centro-titulo .text-dinamico{
+        margin-left: 0px;
+        height: 130px;
+        overflow: hidden;
+    }
+    @keyframes slide {
+        100%{
+            top: -450px;
+        }
+    }
+}
+@media (max-width: 480px) {
+    .centro{
+       align-items: center;
+       justify-content: center;
+       width: 100%;
+       margin-left: 90px;
+    }
+    .surprise-centro-titulo{
+        flex-direction: column;
+        align-items: center;
+    }
+    .surprise-centro-titulo .text-dinamico{
+        height: 130px;
+        overflow: hidden;
+    }
+    @keyframes slide {
+        100%{
+            top: -450px;
+        }
+    }
+}
 /* ---------------------------------------------------------------- */
 /* Página de Cadastro de usuário */
+.body-cadastro-usuario{
+    background-color: black;
+}
+
+.cadastro-background{
+    padding: 30px;
+    top: 50%;
+    left: 50%;
+    background-color: rgb(190, 190, 190);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 500px;
+    margin-top: 10px;
+    border-radius: 10px;
+    text-align: end;
+    font-weight: bold;
+    box-shadow: 0 0 10px 5px rgb(231, 105, 2);
+    
+}
+
+.logo-cadastro-usuario{
+    display: block;
+    margin: 0 auto;
+}
+
+.inserir-cadastro{
+    margin: 8px;
+    padding: 7px;
+    width: 400px;
+    vertical-align: middle;
+    border: none;
+    border-radius: 5px;
+}
+
+#formCadastros{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group-cadastro{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.input-group-cadastro label {
+    margin-right: 10px;
+    flex-basis: 220px;
+}
+.input-group-cadastro i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+#btnConcluirCadastro {
+    background-color: rgb(231, 105, 2);
+    color: white;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: large;
+    border: none;
+    border-radius: 5px;
+    width: 170px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+#btnConcluirCadastro:hover {
+    background-color: rgb(136, 62, 2);
+    cursor: pointer;
+}
+
+/*mensagens submit*/
+#msgsucesso {
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 255, 0, 0.8);
+    border: solid 2px rgb(0, 255, 0);
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 400px;
+    animation: shadow-animation2 0.5s 3 linear;
+}
+
+#msgerro {
+    text-align: center;
+    color: white;
+    background-color: rgba(255, 0, 0, 0.8);
+    border: solid 2px #ff0000;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 400px;
+    animation: shadow-animation 0.5s 3 linear;
+}
+
+#msgfaltainfo {
+    text-align: center;
+    color: white;
+    background-color: rgba(255, 0, 0, 0.8);
+    border: solid 2px #ff0000;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 400px;
+    animation: shadow-animation 3s 1.5 linear;
+}
+
+@keyframes shadow-animation {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+    }
+
+    25% {
+        box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.5);
+    }
+}
+
+@keyframes shadow-animation2 {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 42, 0.5);
+    }
+
+    25% {
+        box-shadow: 0 0 20px 5px rgba(0, 255, 55, 0.5);
+    }
+}
+
+/*responsive*/
+/* Estilos para tablet */
+@media (max-width: 768px) {
+    .cadastro-background{
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .inserir-cadastro{
+        width: 90%;
+    }
+
+    .input-group-cadastro label {
+        flex-basis:content;
+    }
+}
+
+/* Estilos para celular */
+@media (max-width: 480px) {
+    .cadastro-background{
+        width: 90%;
+        padding: 5px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        margin-top: 10px;
+        margin-bottom: 110px;
+    }
+
+    .inserir-cadastro{
+        width: 80%;
+    }
+
+    .input-group-cadastro{
+        flex-direction: column;
+       
+    }
+
+    .input-group-cadastro label {
+        margin-right: 0;
+        padding: 10px;
+        margin-bottom: 5px;
+        flex-basis: auto;
+    }
+    
+}
 
 
 
@@ -146,6 +384,10 @@
 .body-login{
     background-color: black;
 }
+.login-logo{
+    width: 150px;
+    filter: drop-shadow(1px 1px 2px rgb(255, 255, 255));
+}
 .fundo-login{
     padding: 30px;
     top: 50%;
@@ -154,18 +396,92 @@
     transform: translate(-50%, -50%);
     position: absolute;
     width: 400px;
-    height: 300px;
+    height: 350px;
     border-radius: 10px;
     font-weight: bold;
     box-shadow: 0 0 10px 5px rgb(231, 105, 2);
-    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     
 }
-.input-login{
+.input-login-group{
     display: flex;
     flex-direction: column;
-    width: 200px;
     gap: 10px;
+}
+.input-login{
+    width: 300px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+.btn-login{
+    background-color: rgb(231, 105, 2);
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 20px 0px 20px 0px;
+}
+.link-login{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    
+}
+.link-cadastro{
+    text-decoration: none;
+    list-style: none;
+    color: rgb(231, 105, 2);
+}
+.link-cadastro:hover{
+    background-color: rgb(231, 105, 2);
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+@media (max-width: 768px) {
+    .fundo-login{
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .input-group-cadastro label {
+        flex-basis:content;
+    }
+}
+
+/* Estilos para celular */
+@media (max-width: 480px) {
+    .fundo-login{
+        width: 90%;
+        height: 400px;
+        padding: 5px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        margin-top: 10px;
+        margin-bottom: 110px;
+    }
+    .login-logo{
+        margin-bottom: 20px;
+    }
+    .input-login-group{
+        flex-direction: column;
+       
+    }
+
+    .input-login-group abel {
+        margin-right: 0;
+        padding: 10px;
+        margin-bottom: 5px;
+        flex-basis: auto;
+    }
+    
 }
 
 

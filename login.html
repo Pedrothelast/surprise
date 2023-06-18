@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" class="style">
-    <title>Document</title>
+    <link rel="stylesheet" href="style4.css" class="style">
+    <title>Login - Surprise</title>
 </head>
-<body class="">
+<body class="body-login">
     <div class="fundo-login">
-        <div class="input-login">
-            <input type="text" name="username" id="username" placeholder="Username ou email">
-            <input type="password" name="password " id="password" placeholder="Senha">
+        <img src="logo.png" alt="logo" class="login-logo">
+        <div class="input-login-group">
+            <label for="username">Usuário ou Email:</label>
+            <input class="input-login" type="text" name="username" id="username" placeholder="Username ou email">
+            <label for="username">Senha:</label>
+            <input class="input-login" type="password" name="password " id="password" placeholder="Senha">
         </div>
         <div class="btn-login-div">
-            <button class="btn-login"><a href="index.html">Login</a></button>
+            <button id="btn-login" class="btn-login">Login</button>
         </div>
         <div class="cadastre-se">
-            <p>Não possui uma conta? <a href="cadastro_usuario.html">Cadastre-se</a></p>
+            <p>Não possui uma conta? <a href="cadastro_usuario.html" class="link-cadastro">Cadastre-se</a></p>
         </div>
     </div>
-    
+    <script src="app.js"></script>
 </body>
 </html>
