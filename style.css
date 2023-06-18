@@ -1,9 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins:ital,wght@0,400;0,600;1,500&display=swap');
 *{
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 /* Página Inicial - index*/
+.body-index{
+    background-color: black;
+    color: white;
+}
+.menuprincipal{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: black;
+}
+.logo-menu{
+    filter: drop-shadow(1px 5px 6px rgb(213, 114, 0));
+}
+.lista-menu{
+
+}
+.lista-ul{
+    display: flex;
+    gap: 20px;
+    margin-right: 50px;
+    color: white;
+
+}
+.lista-ul li{
+    background-color:  rgb(231, 105, 2);
+    padding: 7px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    list-style: none;
+}
+.surprise-centro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.titulo{
+    font-size: 140px;
+    filter: drop-shadow(3px 5px 6px rgb(213, 114, 0));
+}
+.subtitulo{
+    font-size: 17px;
+
+}
+.btn-suprise{
+    padding: 10px;
+    font-size: 25px;
+    margin-top: 30px;
+    border-radius: 10px;
+    background-color:  rgb(231, 105, 2);
+    border: none;
+    font-weight: bold;
+    
+    float: right;
+}
+.link-suprise{
+    color: white;
+    text-decoration: none;
+}
+.btn-suprise:hover{
+    background-color: rgb(220, 99, 0);
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: 0 0 10px 5px rgb(255, 176, 123);
+}
 
 /* ---------------------------------------------------------------- */
 /* Página de Cadastro de usuário */
@@ -16,7 +83,30 @@
 
 /* ---------------------------------------------------------------- */
 /* Página de Login */
-
+.body-login{
+    background-color: black;
+}
+.fundo-login{
+    padding: 30px;
+    top: 50%;
+    left: 50%;
+    background-color: rgb(190, 190, 190);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 0 10px 5px rgb(231, 105, 2);
+    justify-content: center;
+    
+}
+.input-login{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    gap: 10px;
+}
 
 
 
