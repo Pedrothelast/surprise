@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style4.css" class="style">
+    <link rel="stylesheet" href="style.css" class="style">
+    <script src="app.js"></script>
     <title>Login - Surprise</title>
 </head>
 <body class="body-login">
     <div class="fundo-login">
-        <img src="logo.png" alt="logo" class="login-logo">
+        <img src="logo.png" alt="logo" class="login-logo" onclick="window.location.href='indexlogado.html'">
         <div class="input-login-group">
             <label for="username">Usuário ou Email:</label>
             <input class="input-login" type="text" name="username" id="username" placeholder="Username ou email">
@@ -16,12 +17,19 @@
             <input class="input-login" type="password" name="password " id="password" placeholder="Senha">
         </div>
         <div class="btn-login-div">
-            <button id="btn-login" class="btn-login">Login</button>
+            <button id="btn-login" onclick="dadosLogin()">Login</button>
         </div>
         <div class="cadastre-se">
             <p>Não possui uma conta? <a href="cadastro_usuario.html" class="link-cadastro">Cadastre-se</a></p>
         </div>
+        <span id="iconVerificado" class="icon"><i class="fas fa-check-circle"></i></span>
+
+        <div id="msglogin"></div>
+        <div id="msgerrologin"></div>
+        
     </div>
     <script src="app.js"></script>
+    
+    
 </body>
 </html>

@@ -12,11 +12,14 @@
 </head>
 <!-- FORMULÁRIO DE CADASTRO -->
 <body class="body-cadastro-usuario">
+  <section class="cadastro-section">
     <div class="cadastro-background">
-        <img src="logo.png" alt="" class="logo-cadastro-usuario" width="200px">
+      <div class="cadastro-image">
+        <img src="logo.png" alt="" class="logo-cadastro-usuario" width="150px">
+      </div>
         <div id="formCadastros">
           <div class="input-group-cadastro">
-            <label for="nome">Nome Completo:</label>
+            <label for="nome">Nome:</label>
             <input class="inserir-cadastro" type="text" id="nome" required>
           </div>
           <div class="input-group-cadastro">
@@ -41,16 +44,41 @@
             <input class="inserir-cadastro" type="password" id="confirme" required>
             <i class="fa fa-eye-slash" aria-hidden="true" id="toggleConfirme" style="padding-right: 5px;"></i>
           </div>
+          <div class="button-cadastro">
+          <button type="submit" id="btnCadastroVoltar" onclick="window.location.href='login.html'">Voltar</button>
           <button type="submit" id="btnConcluirCadastro">Concluir cadastro</button>
-          <div id="msgsucesso"></div>
-          <div id="msgerro"></div>
-          <div id="msgfaltainfo"></div>
+        </div>
+          
         </div>
       </div>
-      
+      <div id="msgsucesso"></div>
+          <div id="msgerro"></div>
+          <div id="msgfaltainfo"></div>
+    </section>
+    
       
 
     <script src="app.js"></script>
+    <script>
+    document.getElementById('btnConcluirCadastro').addEventListener("click", validarFormulario);
+    //para visualizar as senhas ocultas
+const toggleSenha = document.querySelector('#toggleSenha');
+const senha = document.querySelector('#senha');
+toggleSenha.addEventListener('click', function () {
+  const tipo = senha.getAttribute('type') === 'password' ? 'text' : 'password';
+  senha.setAttribute('type', tipo);
+  this.classList.toggle('fa-eye-slash');
+  this.classList.toggle('fa-eye');
+});
+const toggleConfirme = document.querySelector('#toggleConfirme');
+const confirme = document.querySelector('#confirme');
+toggleConfirme.addEventListener('click', function () {
+  const tipo = confirme.getAttribute('type') === 'password' ? 'text' : 'password';
+  confirme.setAttribute('type', tipo);
+  this.classList.toggle('fa-eye-slash');
+  this.classList.toggle('fa-eye');
+});
+    </script>
 </body>
 
 </html>

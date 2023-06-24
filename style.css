@@ -19,8 +19,8 @@
 .logo-menu{
     filter: drop-shadow(1px 5px 6px rgb(213, 114, 0));
 }
-.lista-menu{
-
+.logo-menu:hover{
+    cursor: pointer;
 }
 .lista-ul{
     display: flex;
@@ -36,6 +36,15 @@
     border-radius: 5px;
     text-decoration: none;
     list-style: none;
+}
+.lista-ul li a{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+}
+.lista-ul li:hover{
+    background-color: rgb(146, 67, 2);
+    cursor: pointer;
 }
 
 .centro{
@@ -115,7 +124,7 @@
     font-size: 17px;
 
 }
-.btn-suprise{
+ .btn-suprise{
     padding: 10px;
     font-size: 25px;
     margin-top: 30px;
@@ -123,7 +132,8 @@
     background-color:  rgb(231, 105, 2);
     border: none;
     font-weight: bold;
-}
+    color: white;
+} 
 .link-suprise{
     color: white;
     text-decoration: none;
@@ -133,11 +143,55 @@
     cursor: pointer;
     transition: 0.5s;
     box-shadow: 0 0 10px 5px rgb(255, 176, 123);
-}
+} */
+.btn-surprise {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+.btn-surprise:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 transparent;
+    transition: all 0.3s ease-in-out;
+    animation: contour 2s infinite;
+  }
+  
+  @keyframes contour {
+    0% {
+      box-shadow: 0 0 0 transparent;
+    }
+    25% {
+      box-shadow: 0 0 0 5px #ffffff;
+    }
+    50% {
+      box-shadow: 0 0 0 10px #ffffff;
+    }
+    75% {
+      box-shadow: 0 0 0 5px #ffffff;
+    }
+    100% {
+      box-shadow: 0 0 0 transparent;
+    }
+  }
+  
+
+  
+  
+  
 /* media queries */
 @media (max-width: 768px) {
-    .titulo{
-    }
     .surprise-centro-titulo{
         flex-direction: column;
         align-items: center;
@@ -178,27 +232,30 @@
 /* Página de Cadastro de usuário */
 .body-cadastro-usuario{
     background-color: black;
+    height: 100%;
 }
 
 .cadastro-background{
     padding: 30px;
     top: 50%;
     left: 50%;
-    background-color: rgb(190, 190, 190);
+    background-color: rgb(0, 0, 0);
+    color: white;
     transform: translate(-50%, -50%);
     position: absolute;
-    width: 500px;
-    margin-top: 10px;
+    width: 600px;
+    margin: 10px 0px 10px 0px;
     border-radius: 10px;
-    text-align: end;
     font-weight: bold;
     box-shadow: 0 0 10px 5px rgb(231, 105, 2);
-    
 }
-
+.cadastro-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .logo-cadastro-usuario{
-    display: block;
-    margin: 0 auto;
+    filter: drop-shadow(1px 5px 6px rgb(129, 71, 4));
 }
 
 .inserir-cadastro{
@@ -213,6 +270,7 @@
 #formCadastros{
     display: flex;
     flex-direction: column;
+    text-align: end;
 }
 
 .input-group-cadastro{
@@ -236,23 +294,47 @@
 #btnConcluirCadastro {
     background-color: rgb(231, 105, 2);
     color: white;
-    padding: 12px;
-    margin-top: 20px;
+    padding: 7px;
     font-size: large;
     border: none;
     border-radius: 5px;
-    width: 170px;
+    width: 200px;
     display: flex;
     justify-content: center;
-    margin: 0 auto;
     margin-top: 20px;
+    font-weight: bold;
+
 }
 
 #btnConcluirCadastro:hover {
-    background-color: rgb(136, 62, 2);
+    background-color: rgb(76, 39, 9);
     cursor: pointer;
+    transition: 0.5s;
 }
-
+#btnCadastroVoltar{
+    background-color: rgb(231, 105, 2);
+    color: white;
+    padding: 7px;
+    font-size: large;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+#btnCadastroVoltar:hover {
+    background-color: rgb(76, 39, 9);
+    cursor: pointer;
+    transition: 0.5s;
+}
+.button-cadastro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /*mensagens submit*/
 #msgsucesso {
     text-align: center;
@@ -347,14 +429,12 @@
     .cadastro-background{
         width: 90%;
         padding: 5px;
-        position: relative;
         left: 50%;
         transform: translate(-50%, -50%);
         position: absolute;
         margin-top: 10px;
-        margin-bottom: 110px;
     }
-
+    
     .inserir-cadastro{
         width: 80%;
     }
@@ -386,13 +466,18 @@
 }
 .login-logo{
     width: 150px;
-    filter: drop-shadow(1px 1px 2px rgb(255, 255, 255));
+    filter: drop-shadow(1px 5px 6px rgb(129, 71, 4));
+}
+.login-logo:hover{
+    cursor: pointer;
+    filter: drop-shadow(1px 1px 2px rgb(129, 71, 4));
 }
 .fundo-login{
     padding: 30px;
     top: 50%;
     left: 50%;
-    background-color: rgb(190, 190, 190);
+    background-color: rgb(0, 0, 0);
+    color: white;
     transform: translate(-50%, -50%);
     position: absolute;
     width: 400px;
@@ -416,13 +501,21 @@
     border: none;
     border-radius: 5px;
 }
-.btn-login{
+#btn-login{
     background-color: rgb(231, 105, 2);
     font-weight: bold;
     padding: 10px;
     border: none;
     border-radius: 5px;
     margin: 20px 0px 20px 0px;
+    color: white;
+    font-weight: bold;
+}
+#btn-login:hover{
+    background-color: rgb(146, 67, 2);
+    cursor: pointer;
+    transition: 0.5s;
+
 }
 .link-login{
     text-decoration: none;
@@ -483,13 +576,119 @@
     }
     
 }
+#msglogin{
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 255, 0, 0.8);
+    border: solid 2px rgb(0, 255, 0);
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 400px;
+    animation: shadow-animation2 0.5s 3 linear;
+}
 
-
+#msgerrologin{
+    text-align: center;
+    color: white;
+    background-color: rgba(255, 0, 0, 0.8);
+    border: solid 2px #ff0000;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 400px;
+    animation: shadow-animation 0.5s 3 linear;
+}
 
 
 
 /* ---------------------------------------------------------------- */
 /* Página de perfil */
+.body-perfil{
+    background-color: black;
+}
+.profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px 5px rgb(231, 105, 2);
+    padding: 30px;
+    
+    
+}
+.image-input-container {
+    position: relative;
+  }
+  
+  .image-input-container input[type="file"] {
+    display: none;
+  }
+  
+  .image-input-container label {
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .image-input-container img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .image-input-container span {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #777;
+  }
+  
+  .perfil-info{
+    display: flex;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+
+  }
+  .perfil-input{
+    display: flex;
+    flex-direction: column;
+    margin-left: 80px;
+    gap: 10px;
+
+  }
+  .perfil-input-box{
+    width: 300px;
+    padding: 3px;
+  }
+  .perfil-button{
+    margin-top: 20px;
+    
+  }
+  .perfil-btn{
+    background-color: rgb(220, 99, 0);
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    margin: 7px;
+
+  }
+
 
 
 
@@ -579,7 +778,7 @@
     justify-content: center;
     text-align: center;
 }
-  #btnCarregaFilme{
+  .btn-busca{
     margin: 20px;
     background-color: rgb(231, 105, 2);
     border: none;
@@ -589,7 +788,7 @@
     color: white;
     font-weight: bold;
 }
-#btnCarregaFilme:hover{
+.btn-busca:hover{
     cursor: pointer;
     background-color: rgb(146, 67, 2);
 }
@@ -617,6 +816,12 @@
     font-weight: bold;
     border: none;
     border-radius: 5px;
+   
+    position: absolute;
+    
+}
+#back-v a {
+    text-decoration: none;
     color: white;
 }
 .barra-pesquisa{
@@ -627,18 +832,16 @@
     text-align: center;
 }
 .botao-pesquisa button{
-    background-color: orange;
+    background-color: rgb(231, 105, 2);
     padding: 10px;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     border: none;
     border-radius: 5px;
     color: white;
 }
 .barra-pesquisa button{
-    background-color: orange;
+    background-color: rgb(231, 105, 2);
     padding: 10px;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     border: none;
     border-radius: 5px;
@@ -683,4 +886,41 @@ div.filmes div.info-filmes{
 }
 /* ---------------------------------------------------------------- */
 /* Pagina de resultados mais procurados */
+.most-body{
+    background-color: black;
+}
+.most-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.titulo-most{
+    color: white;
+    font-size: 50px;
+    filter: drop-shadow(3px 5px 6px rgb(213, 114, 0));
+}
+.btn-one{
+    color: white;
+    background-color: rgb(220, 99, 0);
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    font-weight: bold;
+
+}
+.btn-one:hover{
+    background-color: rgb(139, 64, 2);
+    cursor: pointer;
+} 
+#telas{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
 
