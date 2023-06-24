@@ -164,7 +164,7 @@ setTimeout(() => {
 //----------------------------------------------------------------
 //Cadastro de Filmes
 function lerDados() {
-  let strDados = localStorage.getItem('db');
+  let strDados = localStorage.getItem('cad');
   let objDados = {};
 
   if (strDados) { 
@@ -220,7 +220,7 @@ function lerDados() {
 }
 
 function salvarDados(dados) {
-  localStorage.setItem('db', JSON.stringify(dados));
+  localStorage.setItem('cad', JSON.stringify(dados));
 
 
 }
