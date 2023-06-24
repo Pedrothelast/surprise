@@ -8,21 +8,8 @@
     <link rel="stylesheet" href="style.css" class="style">
 </head>
 <body class="resultado">
-  <header class="cabecalho">
-    <div class="menuprincipal">
-        <div class="logo-menu">
-            <img src="logo.png" alt="logo" width="170px">
-        </div>
-        <div class="lista-menu">
-            <ul class="lista-ul">
-                <li>HOME</li>
-                <li>MAIS POPULARES</li>
-                <li><a href="login.html">LOGIN</a></li>
-                <li>SAIR</li>
-            </ul>
-        </div>
-    </div>
-</header>
+  <header class="cabecalho" id="menu" >
+  </header>
 <div class="barra-pesquisa">
   <div id="formBuscaFilmes">
   <p>TAGS DE BUSCA:</p> <input type="text" id="inputDados" style="height: 30px; width: 250px;">
@@ -42,6 +29,11 @@
 
   <button id="btnBuscarFilmes" class="btn-busca" >Buscar</button>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      carregarPagina();
+  })
+</script>
 <script src="app.js"></script>
 <script>
   const botaoSalvar = document.getElementById("addTag");
@@ -146,5 +138,6 @@ exibirTags();
 
 // });
 </script>
+
 </body>
 </html>

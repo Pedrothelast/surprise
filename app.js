@@ -1,4 +1,43 @@
 //----------------------------------------------------------------
+function carregarPagina(){
+  let objDados = leDados1();
+  let objLogin = leDados2();
+  if (objLogin.id === '') {
+    let menu = document.getElementById('menu');
+    strHtml = `<div class="menuprincipal">
+    <div class="logo-menu">
+        <img src="logo.png" alt="logo" width="170px" onclick="window.location.href = 'index.html'">
+    </div>
+    <div class="lista-menu">
+        <ul class="lista-ul">
+        <li><a href="maispopulares.html">MAIS POPULARES</a></li>
+            <li><a href="aboutUs.html">SOBRE NÓS</a></li>
+            <li><a href="cadastro_usuario.html">CADASTRE-SE</a></li>
+            <li><a href="login.html">LOGIN</a></li>
+        </ul>
+    </div>
+</div>`;
+    menu.innerHTML = strHtml;
+  }
+  else if (objLogin.id >= 1) {
+    let menu = document.getElementById('menu');
+    strHtml = `<div class="menuprincipal">
+    <div class="logo-menu">
+    <img src="logo.png" alt="logo" width="170px" onclick="window.location.href = 'index.html'">
+    </div>
+    <div class="lista-menu">
+        <ul class="lista-ul">
+        <li><a href="maispopulares.html">MAIS POPULARES</a></li>
+        <li><a href="aboutUs.html">SOBRE NÓS</a></li>
+            <li><a href="perfil.html">PERFIL</a></li>
+            <li><a onclick="sairLogin()">SAIR</a></li>
+        </ul>
+    </div>
+</div>`;
+    menu.innerHTML = strHtml;
+
+  }
+}
 // Página de Cadastro
 
 //FORMULÁRIO DE CADASTRO
@@ -15,13 +54,14 @@ function leDados1() {
     objDados = {
       cadastros: [
         {
-          id: "",
-          nome: '',
-          username: '',
-          email: '',
-          data: '',
-          senha: '',
-          confirme: ''
+          id: "1",
+          imagem: 'perfil.png',
+          nome: 'admin',
+          username: 'admin',
+          email: 'admin@gmail.com',
+          data: '2004-03-30',
+          senha: 'admin',
+          confirme: 'admin'
         },
       ]
     }
@@ -72,6 +112,7 @@ function incluirCadastro() {
   //variavel modelo que sera impresso na tela após o cadastro
   let novoCadastro = {
     id: strid,
+    imagem: 'perfil.png',
     nome: strNome,
     username: strUsername,
     email: strEmail,
@@ -130,89 +171,173 @@ function validarFormulario() {
 
 //----------------------------------------------------------------
 // Login
+function leDados2() {
+  let strDados = localStorage.getItem('log');
+  var objLogin = {};
+
+  if (strDados) {
+
+    objLogin = JSON.parse(strDados);
+  }
+  else {
+    objLogin = {
+      cadastros: [
+        {
+          id: '',
+          username: ''
+        },
+      ]
+    }
+  }
+  return objLogin
+}
+
+
+function salvarLogin(dados) {
+  localStorage.setItem('log', JSON.stringify(dados));
+
+}
+
 function dadosLogin() {
   let objDados = leDados1();
   let username = document.getElementById('username').value;
   let password = document.getElementById('password').value;
 
   for (let i = 0; i < objDados.cadastros.length; i++) {
-    if ((objDados.cadastros[i].username === username &&  objDados.cadastros[i].username != '') && (objDados.cadastros[i].senha === password && objDados.cadastros[i].senha != '')) {
+    if ((objDados.cadastros[i].username === username && objDados.cadastros[i].username != '') && (objDados.cadastros[i].senha === password && objDados.cadastros[i].senha != '')) {
       let msglogin = document.querySelector('#msglogin');
       msglogin.setAttribute('style', 'display:block');
       msglogin.innerHTML = '<strong>Seja bem vindo</strong>';
       setTimeout(() => {
         msgerrologin.setAttribute('style', 'display:none');
       }, 2700);
-      setTimeout(() => { window.location.href = 'indexlogado.html?query=' + objDados.cadastros[i].id; }, 2700);
-    return;
+
+      let usuarioSessao = {
+        id: objDados.cadastros[i].id,
+        username: objDados.cadastros[i].username
+      };
+      salvarLogin(usuarioSessao);
+
+      setTimeout(() => { window.location.href = 'index.html'; }, 2700);
+      return;
     }
-    
+
   }
-  
-let msgerrologin = document.querySelector('#msgerrologin');
-msgerrologin.setAttribute('style', 'display:block');
-msgerrologin.innerHTML = '<strong>Usuário e/ou senha incorretos!</strong>';
-setTimeout(() => {
-  msgerrologin.setAttribute('style', 'display:none');
-}, 2700);
+
+  let msgerrologin = document.querySelector('#msgerrologin');
+  msgerrologin.setAttribute('style', 'display:block');
+  msgerrologin.innerHTML = '<strong>Usuário e/ou senha incorretos!</strong>';
+  setTimeout(() => {
+    msgerrologin.setAttribute('style', 'display:none');
+  }, 2700);
+}
+// -----------------------------------------------------------------
+// FUNÇAO PAGINA INICIAL
+
+// ----------------------------------------------------------------
+// Perfil
+function mostrarPerfil() {
+  let objDados = leDados1();
+  let objLogin = leDados2();
+  document.getElementById('perfil-nome').value = objDados.cadastros[objLogin.id - 1].nome;
+  document.getElementById('perfil-email').value = objDados.cadastros[objLogin.id - 1].email;
+  document.getElementById('perfil-username').value = objDados.cadastros[objLogin.id - 1].username;
+  document.getElementById('perfil-data').value = objDados.cadastros[objLogin.id - 1].data;
 }
 
+function alterarPerfil() {
+  let objDados = leDados1();
+  let objLogin = leDados2();
+  let id = objLogin.id;
 
+  const index = objDados.cadastros.findIndex(cadastros => cadastros.id == id);
 
+  objDados.cadastros[index].nome = document.getElementById('perfil-nome').value;
+  objDados.cadastros[index].email = document.getElementById('perfil-email').value;
+  objDados.cadastros[index].username = document.getElementById('perfil-username').value;
+  objDados.cadastros[index].data = document.getElementById('perfil-data').value;
 
+  localStorage.setItem('db', JSON.stringify(objDados));
 
+  let msgAlteracao = document.querySelector('#msgAlteracao');
+  msgAlteracao.setAttribute('style', 'display:block');
+  msgAlteracao.innerHTML = '<strong>Alterado com sucesso!</strong>';
+  setTimeout(() => {
+    msgAlteracao.setAttribute('style', 'display:none');
+  }, 2700);
+}
+
+function sairLogin() {
+  let objLogin = leDados2();
+
+  objLogin.id = '';
+  objLogin.username = '';
+
+  localStorage.setItem('log', JSON.stringify(objLogin));
+  window.location.href = 'index.html'
+
+}
+
+function excluirCadastro(indice) {
+  let objDados = leDados1();
+  let objLogin = leDados2();
+
+  objDados.cadastros.splice(objLogin.id - 1, 1);
+  salvaDados(objDados);
+  window.location.href = 'index.html';
+}
 //----------------------------------------------------------------
 //Cadastro de Filmes
 function lerDados() {
   let strDados = localStorage.getItem('cad');
   let objDados = {};
 
-  if (strDados) { 
-      objDados = JSON.parse(strDados);
+  if (strDados) {
+    objDados = JSON.parse(strDados);
   } else {
-      objDados = {
-          filmes: [
-              {
-                  id: 1,
-                  img: "https://br.web.img3.acsta.net/c_310_420/medias/nmedia/18/89/43/82/20052140.jpg",
-                  name: "The Avengers",
-                  sinopse: "Loki (Tom Hiddleston) retorna à Terra enviado pelos chitauri, uma raça alienígena que pretende dominar os humanos. Com a promessa de que será o soberano do planeta, ele rouba o cubo cósmico dentro de instalações da S.H.I.E.L.D. e, com isso, adquire grandes poderes. Loki os usa para controlar o dr. Erik Selvig (Stellan Skarsgard) e Clint Barton/Gavião Arqueiro (Jeremy Renner), que passam a trabalhar para ele. No intuito de contê-los, Nick Fury (Samuel L. Jackson) convoca um grupo de pessoas com grandes habilidades, mas que jamais haviam trabalhado juntas: Tony Stark/Homem de Ferro (Robert Downey Jr.), Steve Rogers/Capitão América (Chris Evans), Thor (Chris Hemsworth), Bruce Banner/Hulk (Mark Ruffalo) e Natasha Romanoff/Viúva Negra (Scarlett Johansson). Só que, apesar do grande perigo que a Terra corre, não é tão simples assim conter o ego e os interesses de cada um deles para que possam agir em grupo.",
-                  ano: "2012",
-                  tempo: "2h 23min",
-                  categoria: "Ação, Aventura, Ficção científica",
-                  tags: ["herois", "super-poderes", "Marvel", "Engraçado"],
-                  direcao: "Joss Whedon",
-                  elenco: "Robert Downey Jr., Chris Evans, Mark Ruffalo",
-                  visualizacao: 0
-              },
-              {
-                  id: 2,
-                  img: "https://br.web.img3.acsta.net/c_310_420/pictures/15/02/24/18/27/528824.jpg",
-                  name: "The Avengers 2",
-                  sinopse: "Tentanto proteger o planeta de ameaças como as vistas no primeiro Os Vingadores, Tony Stark busca construir um sistema de inteligência artifical que cuidaria da paz mundial. O projeto acaba dando errado e gera o nascimento do Ultron (voz de James Spader). Capitão América (Chris Evans), Homem de Ferro (Robert Downey Jr.), Thor (Chris Hemsworth), Hulk (Mark Ruffalo), Viúva Negra (Scarlett Johansson) e Gavião Arqueiro (Jeremy Renner) terão que se unir para mais uma vez salvar o dia.",
-                  ano: "2015",
-                  tempo: "2h 21min",
-                  categoria: "Ação, Aventura, Ficção científica",
-                  tags: ["herois", "super-poderes", "Marvel", "Robos", "reviravoltas"],
-                  direcao: "Joss Whedon",
-                  elenco: "Robert Downey Jr., Chris Evans, Mark Ruffalo",
-                  visualizacao: 0
-              },
-              {
-                  id: 3,
-                  img: "https://br.web.img3.acsta.net/c_310_420/pictures/18/03/16/15/08/2019826.jpg",
-                  name: "The Avengers 3",
-                  sinopse: "Em Vingadores: Guerra Infinita, Thanos (Josh Brolin) enfim chega à Terra, disposto a reunir as Joias do Infinito. Para enfrentá-lo, os Vingadores precisam unir forças com os Guardiões da Galáxia, ao mesmo tempo em que lidam com desavenças entre alguns de seus integrantes.",
-                  ano: "2018",
-                  tempo: "2h 36min",
-                  categoria: "Ação, Aventura, Ficção científica",
-                  tags: ["herois", "super-poderes", "Marvel", "Engraçado"],
-                  direcao: "Joe Russo, Anthony Russo",
-                  elenco: "Robert Downey Jr., Chris Evans, Mark Ruffalo",
-                  visualizacao: 0
-              }]
+    objDados = {
+      filmes: [
+        {
+          id: 1,
+          img: "https://br.web.img3.acsta.net/c_310_420/medias/nmedia/18/89/43/82/20052140.jpg",
+          name: "The Avengers",
+          sinopse: "Loki (Tom Hiddleston) retorna à Terra enviado pelos chitauri, uma raça alienígena que pretende dominar os humanos. Com a promessa de que será o soberano do planeta, ele rouba o cubo cósmico dentro de instalações da S.H.I.E.L.D. e, com isso, adquire grandes poderes. Loki os usa para controlar o dr. Erik Selvig (Stellan Skarsgard) e Clint Barton/Gavião Arqueiro (Jeremy Renner), que passam a trabalhar para ele. No intuito de contê-los, Nick Fury (Samuel L. Jackson) convoca um grupo de pessoas com grandes habilidades, mas que jamais haviam trabalhado juntas: Tony Stark/Homem de Ferro (Robert Downey Jr.), Steve Rogers/Capitão América (Chris Evans), Thor (Chris Hemsworth), Bruce Banner/Hulk (Mark Ruffalo) e Natasha Romanoff/Viúva Negra (Scarlett Johansson). Só que, apesar do grande perigo que a Terra corre, não é tão simples assim conter o ego e os interesses de cada um deles para que possam agir em grupo.",
+          ano: "2012",
+          tempo: "2h 23min",
+          categoria: "Ação, Aventura, Ficção científica",
+          tags: ["herois", "super-poderes", "Marvel", "Engraçado"],
+          direcao: "Joss Whedon",
+          elenco: "Robert Downey Jr., Chris Evans, Mark Ruffalo",
+          visualizacao: 0
+        },
+        {
+          id: 2,
+          img: "https://br.web.img3.acsta.net/c_310_420/pictures/15/02/24/18/27/528824.jpg",
+          name: "The Avengers 2",
+          sinopse: "Tentanto proteger o planeta de ameaças como as vistas no primeiro Os Vingadores, Tony Stark busca construir um sistema de inteligência artifical que cuidaria da paz mundial. O projeto acaba dando errado e gera o nascimento do Ultron (voz de James Spader). Capitão América (Chris Evans), Homem de Ferro (Robert Downey Jr.), Thor (Chris Hemsworth), Hulk (Mark Ruffalo), Viúva Negra (Scarlett Johansson) e Gavião Arqueiro (Jeremy Renner) terão que se unir para mais uma vez salvar o dia.",
+          ano: "2015",
+          tempo: "2h 21min",
+          categoria: "Ação, Aventura, Ficção científica",
+          tags: ["herois", "super-poderes", "Marvel", "Robos", "reviravoltas"],
+          direcao: "Joss Whedon",
+          elenco: "Robert Downey Jr., Chris Evans, Mark Ruffalo",
+          visualizacao: 0
+        },
+        {
+          id: 3,
+          img: "https://br.web.img3.acsta.net/c_310_420/pictures/18/03/16/15/08/2019826.jpg",
+          name: "The Avengers 3",
+          sinopse: "Em Vingadores: Guerra Infinita, Thanos (Josh Brolin) enfim chega à Terra, disposto a reunir as Joias do Infinito. Para enfrentá-lo, os Vingadores precisam unir forças com os Guardiões da Galáxia, ao mesmo tempo em que lidam com desavenças entre alguns de seus integrantes.",
+          ano: "2018",
+          tempo: "2h 36min",
+          categoria: "Ação, Aventura, Ficção científica",
+          tags: ["herois", "super-poderes", "Marvel", "Engraçado"],
+          direcao: "Joe Russo, Anthony Russo",
+          elenco: "Robert Downey Jr., Chris Evans, Mark Ruffalo",
+          visualizacao: 0
+        }]
 
-      }
+    }
 
 
   }
@@ -243,17 +368,17 @@ function incluirFilme() {
   let visualizacao = 0;
 
   let novoFilme = {
-      id: id,
-      img: img,
-      name: nome,
-      sinopse: sinopse,
-      ano: ano,
-      tempo: tempo,
-      categoria: categoria,
-      tags: tags,
-      direcao: direcao,
-      elenco: elenco,
-      visualizacao: visualizacao
+    id: id,
+    img: img,
+    name: nome,
+    sinopse: sinopse,
+    ano: ano,
+    tempo: tempo,
+    categoria: categoria,
+    tags: tags,
+    direcao: direcao,
+    elenco: elenco,
+    visualizacao: visualizacao
   };
 
   objDados.filmes.push(novoFilme);
@@ -273,7 +398,7 @@ function imprimirDados() {
   let objDados = lerDados();
 
   for (i = 0; i < objDados.filmes.length; i++) {
-      strHtml += `<div class="filmes">
+    strHtml += `<div class="filmes">
       <div class="title-img">
       <h2 style="text-transform: uppercase; width:208px"><strong>${objDados.filmes[i].name}</strong></h2><br>
       <img class="capa" src="${objDados.filmes[i].img}">
@@ -290,29 +415,29 @@ function imprimirDados() {
         </p>
         </div>
         </div>`;
-  }objDados.filmes[i]
+  } objDados.filmes[i]
 
   tela.innerHTML = strHtml;
 
-   // Attach click event listeners to movie elements
-let filmes = document.getElementsByClassName('filmes');
-for (let j = 0; j < filmes.length; j++) {
-  filmes[j].addEventListener('click', function() {
-    let selectedFilme = objDados.filmes[j];
+  // Attach click event listeners to movie elements
+  let filmes = document.getElementsByClassName('filmes');
+  for (let j = 0; j < filmes.length; j++) {
+    filmes[j].addEventListener('click', function () {
+      let selectedFilme = objDados.filmes[j];
 
-    // Populate form inputs with selected movie details
-    document.getElementById('filmeId').value = selectedFilme.id;
-    document.getElementById('filmeImg').value = selectedFilme.img;
-    document.getElementById('filmeName').value = selectedFilme.name;
-    document.getElementById('filmeSinopse').value = selectedFilme.sinopse;
-    document.getElementById('filmeAno').value = selectedFilme.ano;
-    document.getElementById('filmeTempo').value = selectedFilme.tempo;
-    document.getElementById('filmeCategoria').value = selectedFilme.categoria;
-    document.getElementById('filmeTag').value = selectedFilme.tags.join(', ');
-    document.getElementById('filmeDirecao').value = selectedFilme.direcao;
-    document.getElementById('filmeElenco').value = selectedFilme.elenco;
-  });
-}
+      // Populate form inputs with selected movie details
+      document.getElementById('filmeId').value = selectedFilme.id;
+      document.getElementById('filmeImg').value = selectedFilme.img;
+      document.getElementById('filmeName').value = selectedFilme.name;
+      document.getElementById('filmeSinopse').value = selectedFilme.sinopse;
+      document.getElementById('filmeAno').value = selectedFilme.ano;
+      document.getElementById('filmeTempo').value = selectedFilme.tempo;
+      document.getElementById('filmeCategoria').value = selectedFilme.categoria;
+      document.getElementById('filmeTag').value = selectedFilme.tags.join(', ');
+      document.getElementById('filmeDirecao').value = selectedFilme.direcao;
+      document.getElementById('filmeElenco').value = selectedFilme.elenco;
+    });
+  }
 
 }
 
@@ -321,24 +446,24 @@ function buscarFilmesPorTags(tags) {
   let objDados = lerDados();
 
   if (objDados && objDados.filmes && Array.isArray(objDados.filmes)) {
-      const tagsArray = tags.split(',').map(tag => tag.trim().toLowerCase());
-      const filmesEncontrados = objDados.filmes.filter(filme => {
-          const filmeTags = filme.tags || [];
-          const filmeTagsLowerCase = filmeTags.map(tag => tag.toLowerCase());
+    const tagsArray = tags.split(',').map(tag => tag.trim().toLowerCase());
+    const filmesEncontrados = objDados.filmes.filter(filme => {
+      const filmeTags = filme.tags || [];
+      const filmeTagsLowerCase = filmeTags.map(tag => tag.toLowerCase());
 
-          return tagsArray.some(tag => filmeTagsLowerCase.includes(tag));
-      });
+      return tagsArray.some(tag => filmeTagsLowerCase.includes(tag));
+    });
 
-      return filmesEncontrados;
+    return filmesEncontrados;
   }
 
   return [];
 
-  
+
 }
 // Adicionar evento de clique ao botão "Limpar Tags"
-document.getElementById('limparTags').addEventListener('click', function() {
-document.getElementById('tagsBusca').value = '';
+document.getElementById('limparTags').addEventListener('click', function () {
+  document.getElementById('tagsBusca').value = '';
 });
 
 
@@ -366,7 +491,7 @@ function exibirResultados(filmes) {
   let objDados = lerDados();
 
   filmes.forEach(filme => {
-      strHtml += `<div class="filmes">
+    strHtml += `<div class="filmes">
       <div class="title-img">
       <h2 style="text-transform: uppercase; width:208px"><strong>${filme.name}</strong></h2><br>
       <img class="capa" src="${filme.img}">
@@ -383,11 +508,11 @@ function exibirResultados(filmes) {
         </p>
         </div>
         </div>`;
-      for (i = 0; i < objDados.filmes.length; i++) {
-          if (filme.name == objDados.filmes[i].name) {
-              objDados.filmes[i].visualizacao++;
-          }
+    for (i = 0; i < objDados.filmes.length; i++) {
+      if (filme.name == objDados.filmes[i].name) {
+        objDados.filmes[i].visualizacao++;
       }
+    }
 
 
   }
@@ -439,7 +564,7 @@ function apagarFilmePorId() {
 
 function apagarFilme(indice) {
   let objDados = lerDados();
-indice--;
+  indice--;
   if (indice < 0 || indice >= objDados.filmes.length) {
     alert.console.log("erro");
     return;

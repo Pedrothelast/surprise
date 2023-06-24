@@ -6,22 +6,9 @@
     <link rel="stylesheet" href="style.css" class="style">
     <title>Profile</title>
 </head>
-<body class="body-perfil">
-    <header class="cabecalho">
-        <div class="menuprincipal">
-            <div class="logo-menu">
-                <img src="logo.png" alt="logo" width="170px" onclick="window.location.href='index.html'">
-            </div>
-            <div class="lista-menu">
-                <ul class="lista-ul">
-                    <li><a href="index.html"></a>HOME</li>
-                    <li>MAIS POPULARES</li>
-                    <li><a href="login.html">LOGIN</a></li>
-                    <li><a href="index.html">SAIR</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+<body class="body-perfil" onload="mostrarPerfil()">
+  <header class="cabecalho" id="menu" >
+  </header>
     <main class="profile">
         <div class="perfil-info">
             <div class="image-input-container">
@@ -33,40 +20,94 @@
               </div>
               <div class="perfil-input">
                 <label for="name">Nome</label>
-                <input  class="perfil-input-box" type="text">
-                <label for="name">Email</label>
-                <input  class="perfil-input-box" type="text">
+                <input  class="perfil-input-box" type="text" id="perfil-nome">
                 <label for="name">Username</label>
-                <input  class="perfil-input-box" type="text">
+                <input  class="perfil-input-box" type="text" id="perfil-username">
+                <label for="name">Email</label>
+                <input  class="perfil-input-box" type="text"id="perfil-email">
+                <label for="name">Data de Nascimento</label>
+                <input  class="perfil-input-box" type="text" id="perfil-data">
               </div>
             </div>
               <div class="perfil-button">
-                <button class="perfil-btn">Alterar cadastro</button>
-                <button class="perfil-btn">Excluir Cadastro</button>
-                <button class="perfil-btn">Sair</button>
+                <button class="perfil-btn" onclick="alterarPerfil()">Alterar cadastro</button>
+                <button class="perfil-btn" onclick="excluirCadastro()">Excluir Cadastro</button>
+                <button class="perfil-btn" onclick="sairLogin()">Sair</button>
               </div>
+              <div id="msgAlteracao"></div>
     </main>
     <script src="app.js"></script>
     <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          carregarPagina();
+      })
+  </script>
+    <script>
+        // Obtém o objeto de dados do usuário logado do localStorage
+        var objDados = leDados1();
+        var objLogin = leDados2();
+
         const imageInput = document.getElementById('imageInput');
-const imagePreview = document.getElementById('imagePreview');
-const spanText = document.querySelector('.image-input-container span');
+        const imagePreview = document.getElementById('imagePreview');
+        const spanText = document.querySelector('.image-input-container span');
 
-imageInput.addEventListener('change', function() {
-  const file = this.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.addEventListener('load', function() {
-      imagePreview.src = reader.result;
-      spanText.style.display = 'none';
-    });
-    reader.readAsDataURL(file);
-  } else {
-    imagePreview.src = 'placeholder-image.png';
-    spanText.style.display = 'block';
-  }
-});
+        // Define a imagem padrão
+        imagePreview.src = 'perfil.png';
 
+        // Carrega a imagem salva, se existir
+        if (objDados && objDados.cadastros && objDados.cadastros[objLogin.id] && objDados.cadastros[objLogin.id].imagem) {
+          imagePreview.src = objDados.cadastros[objLogin.id].imagem;
+        }
+
+        // Manipulador de evento para o input de imagem
+        imageInput.addEventListener('change', function() {
+          const file = this.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.addEventListener('load', function() {
+              imagePreview.src = reader.result;
+              spanText.style.display = 'none';
+
+              // Verifica se o objeto de dados está corretamente inicializado
+              if (!objDados || !objDados.cadastros) {
+                objDados = { cadastros: [] };
+              }
+              if (!objDados.cadastros[objLogin.id]) {
+                objDados.cadastros[objLogin.id] = {};
+              }
+
+              // Atualiza a propriedade 'imagem' no objeto objDados
+              objDados.cadastros[objLogin.id].imagem = reader.result;
+
+              // Salva os dados atualizados no localStorage
+              salvaDados1(objDados);
+            });
+            reader.readAsDataURL(file);
+          } else {
+            imagePreview.src = 'perfil.png';
+            spanText.style.display = 'block';
+
+            // Verifica se o objeto de dados está corretamente inicializado
+            if (!objDados || !objDados.cadastros) {
+              objDados = { cadastros: [] };
+            }
+            if (!objDados.cadastros[objLogin.id]) {
+              objDados.cadastros[objLogin.id] = {};
+            }
+
+            // Remove a propriedade 'imagem' do objeto objDados
+            delete objDados.cadastros[objLogin.id].imagem;
+
+            // Salva os dados atualizados no localStorage
+            salvaDados1(objDados);
+          }
+        });
+
+        // Função para salvar os dados no localStorage
+        function salvaDados1(obj) {
+          localStorage.setItem('db', JSON.stringify(obj));
+        }
     </script>
+    
 </body>
 </html>
