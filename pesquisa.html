@@ -66,24 +66,24 @@ botaoLimpar.addEventListener("click", function() {
   exibirTags();
 });
 
-function exibirTags() {
-  const tagsContainer = document.getElementById("tagsM");
-  tagsContainer.innerHTML = dados
-    .map(
-      (tag, index) =>
-        `<span class="tag" data-index="${index}">${tag} <button class="removerTag">X</button></span>`
-    )
-    .join("");
+// function exibirTags() {
+//   const tagsContainer = document.getElementById("tagsM");
+//   tagsContainer.innerHTML = dados
+//     .map(
+//       (tag, index) =>
+//         `<span class="tag" data-index="${index}">${tag} <button class="removerTag">X</button></span>`
+//     )
+//     .join("");
 
-  const removerTagButtons = document.getElementsByClassName("removerTag");
-  for (let i = 0; i < removerTagButtons.length; i++) {
-    removerTagButtons[i].addEventListener("click", function() {
-      const index = this.parentNode.getAttribute("data-index");
-      dados.splice(index, 1);
-      exibirTags();
-    });
-  }
-}
+//   const removerTagButtons = document.getElementsByClassName("removerTag");
+//   for (let i = 0; i < removerTagButtons.length; i++) {
+//     removerTagButtons[i].addEventListener("click", function() {
+//       const index = this.parentNode.getAttribute("data-index");
+//       dados.splice(index, 1);
+//       exibirTags();
+//     });
+//   }
+// }
 
   //     document.addEventListener('DOMContentLoaded', function() {
   //   var inputTags = document.getElementById('inputDados');
