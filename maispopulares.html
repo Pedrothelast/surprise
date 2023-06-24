@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise</title>
+    <link rel="stylesheet" href="style.css">
+    <!--Referencia de script json-->
+    <script src="app.js"></script>
+</head>
+
+<body class="most-body">
+
+    <header class="cabecalho">
+        <div class="menuprincipal">
+            <div class="logo-menu">
+                <img src="logo.png" alt="logo" width="170px">
+            </div>
+            <div class="lista-menu">
+                <ul class="lista-ul">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="maispopulares.html">MAIS POPULARES</a></li>
+                    <li><a href="login.html">LOGIN</a></li>
+                    <li>SAIR</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!--Parte principal do site-->
+    <main class="most-main">
+        <h1 class="titulo-most">FILMES MAIS POPULARES</h1>
+        <div class="card" id="lista-filmespopulares">
+            <button class="btn-one" onclick="mostrarFilmes()">Show films</button> 
+        </div>
+
+        <div id="telas">
+            <!--onclick="exibirResultados()-->
+    
+        </div>
+
+    </main>
+
+    <!--Rodapé-->
+    <footer>
+
+    </footer>
+
+    <script src="app.js">
+
+    </script>   
+
+    <!--Passando parametros do js-->
+    <script>
+        function mostrarFilmes(){
+        const filmesBuscados = buscarFilmesPorVisualizacoes();
+        exibirResultados(filmesBuscados);
+
+
+        var resultado = '';
+        for (i = 0; i < objDados.filmes.length; i++) {
+            resultado += `<div class="cards">
+                <div><img class="imagem" src="${objDados.filmes[i].img}"></div> 
+                <div>${objDados.filmes[i].name}<br>
+                    ${objDados.filmes[i].ano}<br>
+                    ${objDados.filmes[i].tempo}<br>
+                    ${objDados.filmes[i].categoria}<br>
+                    ${objDados.filmes[i].tags}<br>
+                    ${objDados.filmes[i].direcao}<br>
+                    ${objDados.filmes[i].elenco}
+                </div></div>`;
+        }
+        document.getElementById('lista-filmespopulares').innerHTML = resultado;
+    }
+    </script> 
+</body>
+
+</html>

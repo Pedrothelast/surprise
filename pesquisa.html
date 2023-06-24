@@ -8,129 +8,143 @@
     <link rel="stylesheet" href="style.css" class="style">
 </head>
 <body class="resultado">
-    <button id="back-v"><a href="index.html">Voltar</a></button>
-    <div class="barra-pesquisa">
-        <div id="formBuscaFilmes">
-        <p>TAGS DE BUSCA:</p> <input type="text" id="inputDados" style="height: 30px; width: 250px;">
-        <button id="addTag" >Adicionar tag</button>
-        <button id="limparTags">Limpar Tags</button>
-        <div id="tagsM" style="margin: 20px;">
-
+  <header class="cabecalho">
+    <div class="menuprincipal">
+        <div class="logo-menu">
+            <img src="logo.png" alt="logo" width="170px">
+        </div>
+        <div class="lista-menu">
+            <ul class="lista-ul">
+                <li>HOME</li>
+                <li>MAIS POPULARES</li>
+                <li><a href="login.html">LOGIN</a></li>
+                <li>SAIR</li>
+            </ul>
         </div>
     </div>
-    <div class="resultados-filmes" id="telas">
-    
-    </div>
-    <div id="telas2">
-    
-    </div>
-    <div class="botao-pesquisa">
+</header>
+<div class="barra-pesquisa">
+  <div id="formBuscaFilmes">
+  <p>TAGS DE BUSCA:</p> <input type="text" id="inputDados" style="height: 30px; width: 250px;">
+  <button id="addTag" >Adicionar tag</button>
+  <button id="limparTags">Limpar Tags</button>
+  <div id="tagsM" style="margin: 20px;">
 
-        <button id="btnBuscarFilmes" >Buscar</button>
-    </div>
-    <script src="app.js"></script>
-    <script>
-        const botaoSalvar = document.getElementById("addTag");
-        const dados = [];
-    
-        botaoSalvar.addEventListener("click", function() {
-            const inputDados = document.getElementById("inputDados").value;
-            dados.push(inputDados);
-            document.getElementById("inputDados").value = '';
-            document.getElementById("tagsM").innerHTML = dados.map(tag => `<span style="margin: 10px; padding: 10px; background-color: orange; border-radius: 5px;">${tag}</span>`).join('');
-            console.log(dados);
-        });
-    
-        document.getElementById('btnBuscarFilmes').addEventListener('click', function() {
-            var tags = dados.join(', ');
-            var filmesEncontrados = buscarFilmesPorTags(tags);
-            exibirResultados(filmesEncontrados);
-           // let filmes2 = buscarFilmesPorVisualizacoes();
-           // exibirResultadosV(filmes2);
-        });
-    </script>
-   <script>
+  </div>
+</div>
+<div class="resultados-filmes" id="telas">
+
+</div>
+<div id="telas2">
+
+</div>
+<div class="botao-pesquisa">
+
+  <button id="btnBuscarFilmes" class="btn-busca" >Buscar</button>
+</div>
+<script src="app.js"></script>
+<script>
+  const botaoSalvar = document.getElementById("addTag");
+  const dados = [];
+
+  botaoSalvar.addEventListener("click", function() {
+      const inputDados = document.getElementById("inputDados").value;
+      dados.push(inputDados);
+      document.getElementById("inputDados").value = '';
+      document.getElementById("tagsM").innerHTML = dados.map(tag => `<span style="margin: 10px; padding: 10px; background-color: orange; border-radius: 5px;">${tag}</span>`).join('');
+      console.log(dados);
+  });
+
+  document.getElementById("btnBuscarFilmes").addEventListener('click', function() {
+      var tags = dados.join(', ');
+      var filmesEncontrados = buscarFilmesPorTags(tags);
+      exibirResultados(filmesEncontrados);
+     // let filmes2 = buscarFilmesPorVisualizacoes();
+     // exibirResultadosV(filmes2);
+  });
+</script>
+<script>
 //     const botaoSalvar = document.getElementById("addTag");
 // const botaoLimpar = document.getElementById("limparTags");
 // const dados = [];
 
 botaoSalvar.addEventListener("click", function() {
-  const inputDados = document.getElementById("inputDados").value;
-  dados.push(inputDados);
-  document.getElementById("inputDados").value = '';
-  exibirTags();
+const inputDados = document.getElementById("inputDados").value;
+dados.push(inputDados);
+document.getElementById("inputDados").value = '';
+exibirTags();
 });
 
 botaoLimpar.addEventListener("click", function() {
-  dados.length = 0;
-  exibirTags();
+dados.length = 0;
+exibirTags();
 });
 
-function exibirTags() {
-  const tagsContainer = document.getElementById("tagsM");
-  tagsContainer.innerHTML = dados
-    .map(
-      (tag, index) =>
-        `<span class="tag" data-index="${index}">${tag} <button class="removerTag">X</button></span>`
-    )
-    .join("");
+// function exibirTags() {
+//   const tagsContainer = document.getElementById("tagsM");
+//   tagsContainer.innerHTML = dados
+//     .map(
+//       (tag, index) =>
+//         `<span class="tag" data-index="${index}">${tag} <button class="removerTag">X</button></span>`
+//     )
+//     .join("");
 
-  const removerTagButtons = document.getElementsByClassName("removerTag");
-  for (let i = 0; i < removerTagButtons.length; i++) {
-    removerTagButtons[i].addEventListener("click", function() {
-      const index = this.parentNode.getAttribute("data-index");
-      dados.splice(index, 1);
-      exibirTags();
-    });
-  }
-}
+//   const removerTagButtons = document.getElementsByClassName("removerTag");
+//   for (let i = 0; i < removerTagButtons.length; i++) {
+//     removerTagButtons[i].addEventListener("click", function() {
+//       const index = this.parentNode.getAttribute("data-index");
+//       dados.splice(index, 1);
+//       exibirTags();
+//     });
+//   }
+// }
 
-  //     document.addEventListener('DOMContentLoaded', function() {
-  //   var inputTags = document.getElementById('inputDados');
-  //   var buttonAdicionar = document.getElementById('addTag');
-  //   var buttonLimpar = document.getElementById('limparTags');
-  //   var tagsContainer = document.getElementById('tagsM');
-  //   var tags = [];
+//     document.addEventListener('DOMContentLoaded', function() {
+//   var inputTags = document.getElementById('inputDados');
+//   var buttonAdicionar = document.getElementById('addTag');
+//   var buttonLimpar = document.getElementById('limparTags');
+//   var tagsContainer = document.getElementById('tagsM');
+//   var tags = [];
 
-  //   buttonAdicionar.addEventListener('click', function() {
-  //     var tag = inputTags.value.trim();
-  //     if (tag !== '') {
-  //       tags.push(tag);
-  //       renderTags();
-  //       inputTags.value = '';
-  //     }
-  //   });
+//   buttonAdicionar.addEventListener('click', function() {
+//     var tag = inputTags.value.trim();
+//     if (tag !== '') {
+//       tags.push(tag);
+//       renderTags();
+//       inputTags.value = '';
+//     }
+//   });
 
-  //   buttonLimpar.addEventListener('click', function() {
-  //     tags = [];
-  //     renderTags();
-  //   });
+//   buttonLimpar.addEventListener('click', function() {
+//     tags = [];
+//     renderTags();
+//   });
 
-  //   tagsContainer.addEventListener('click', function(event) {
-  //     if (event.target.classList.contains('tag')) {
-  //       var tag = event.target.dataset.tag;
-  //       tags = tags.filter(function(item) {
-  //         return item !== tag;
-  //       });
-  //       renderTags();
-  //     }
-  //   });
+//   tagsContainer.addEventListener('click', function(event) {
+//     if (event.target.classList.contains('tag')) {
+//       var tag = event.target.dataset.tag;
+//       tags = tags.filter(function(item) {
+//         return item !== tag;
+//       });
+//       renderTags();
+//     }
+//   });
 
-  //   function renderTags() {
-  //     tagsContainer.innerHTML = '';
+//   function renderTags() {
+//     tagsContainer.innerHTML = '';
 
-  //     tags.forEach(function(tag) {
-  //       var tagElement = document.createElement('span');
-  //       tagElement.classList.add('tag');
-  //       tagElement.textContent = tag;
-  //       tagElement.dataset.tag = tag; // Armazena a tag como um atributo de dados
-  //       tagsContainer.appendChild(tagElement);
-  //     });
-  //   }
+//     tags.forEach(function(tag) {
+//       var tagElement = document.createElement('span');
+//       tagElement.classList.add('tag');
+//       tagElement.textContent = tag;
+//       tagElement.dataset.tag = tag; // Armazena a tag como um atributo de dados
+//       tagsContainer.appendChild(tagElement);
+//     });
+//   }
 
-  //   // Renderiza as tags iniciais ao carregar a página
-    
-  // });
-  </script>
+//   // Renderiza as tags iniciais ao carregar a página
+
+// });
+</script>
 </body>
 </html>
