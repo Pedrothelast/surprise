@@ -11,29 +11,16 @@
     <script src="app.js"></script>
 </head>
 
-<body class="most-body">
+<body class="most-body" onload="mostrarFilmes()">
 
-    <header class="cabecalho">
-        <div class="menuprincipal">
-            <div class="logo-menu">
-                <img src="logo.png" alt="logo" width="170px">
-            </div>
-            <div class="lista-menu">
-                <ul class="lista-ul">
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="maispopulares.html">MAIS POPULARES</a></li>
-                    <li><a href="login.html">LOGIN</a></li>
-                    <li>SAIR</li>
-                </ul>
-            </div>
-        </div>
+
+    <header class="cabecalho" id="menu" >
     </header>
 
     <!--Parte principal do site-->
     <main class="most-main">
         <h1 class="titulo-most">FILMES MAIS POPULARES</h1>
         <div class="card" id="lista-filmespopulares">
-            <button class="btn-one" onclick="mostrarFilmes()">Show films</button> 
         </div>
 
         <div id="telas">
@@ -51,6 +38,11 @@
     <script src="app.js">
 
     </script>   
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarPagina();
+        })
+    </script>
 
     <!--Passando parametros do js-->
     <script>
@@ -75,6 +67,7 @@
         document.getElementById('lista-filmespopulares').innerHTML = resultado;
     }
     </script> 
+    
 </body>
 
 </html>

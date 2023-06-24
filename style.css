@@ -622,7 +622,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 10px 5px rgb(231, 105, 2);
     padding: 30px;
     
     
@@ -670,9 +669,19 @@
     gap: 10px;
 
   }
+  .perfil-input label{
+    color: rgb(255, 255, 255);
+    
+  }
   .perfil-input-box{
     width: 300px;
     padding: 3px;
+    text-align: center;
+    color: white;
+    background-color: black;
+    border: none;
+    box-shadow: 0 0 10px 1px rgb(231, 105, 2);
+    border-radius: 5px;
   }
   .perfil-button{
     margin-top: 20px;
@@ -688,7 +697,25 @@
     margin: 7px;
 
   }
-
+  .perfil-btn:hover{
+    cursor: pointer;
+    background-color: rgb(106, 48, 1);
+  }
+#msgAlteracao{
+    text-align: center;
+    color: white;
+    background-color: rgb(220, 99, 0);
+    border: solid 2px rgb(255, 188, 112);
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 400px;
+}
 
 
 

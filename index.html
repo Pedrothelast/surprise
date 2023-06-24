@@ -8,20 +8,7 @@
     <title>Surprise</title>
 </head>
 <body class="body-index">
-    <header class="cabecalho">
-        <div class="menuprincipal">
-            <div class="logo-menu">
-                <img src="logo.png" alt="logo" width="170px">
-            </div>
-            <div class="lista-menu">
-                <ul class="lista-ul">
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="maispopulares.html">MAIS POPULARES</a></li>
-                    <li><a href="login.html">LOGIN</a></li>
-                    <li>SAIR</li>
-                </ul>
-            </div>
-        </div>
+    <header class="cabecalho" id="menu" >
     </header>
     <main class="centro" >
         <div class="surprise-centro-titulo">
@@ -39,6 +26,11 @@
             <button class="btn-suprise" onclick="window.location.href='pesquisa.html'">SURPRISE-ME</button>
         </div>
     </main>
-    
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarPagina();
+        })
+    </script>
 </body>
 </html>
