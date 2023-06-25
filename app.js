@@ -1,24 +1,8 @@
 //----------------------------------------------------------------
 function carregarPagina(){
+  let objDados = leDados1();
   let objLogin = leDados2();
-  if (objLogin.id === "") {
-    let menu = document.getElementById('menu');
-    strHtml = `<div class="menuprincipal">
-    <div class="logo-menu">
-        <img src="logo.png" alt="logo" width="170px" onclick="window.location.href = 'index.html'">
-    </div>
-    <div class="lista-menu">
-        <ul class="lista-ul">
-        <li><a href="maispopulares.html">MAIS POPULARES</a></li>
-            <li><a href="aboutUs.html">SOBRE NÓS</a></li>
-            <li><a href="cadastro_usuario.html">CADASTRE-SE</a></li>
-            <li><a href="login.html">LOGIN</a></li>
-        </ul>
-    </div>
-</div>`;
-    menu.innerHTML = strHtml;
-  }
-  else if (objLogin.id >= 1) {
+  if (objLogin.id >= 1) {
     let menu = document.getElementById('menu');
     strHtml = `<div class="menuprincipal">
     <div class="logo-menu">
@@ -35,6 +19,24 @@ function carregarPagina(){
 </div>`;
     menu.innerHTML = strHtml;
 
+  }
+  
+  else {
+    let menu = document.getElementById('menu');
+    strHtml = `<div class="menuprincipal">
+    <div class="logo-menu">
+        <img src="logo.png" alt="logo" width="170px" onclick="window.location.href = 'index.html'">
+    </div>
+    <div class="lista-menu">
+        <ul class="lista-ul">
+        <li><a href="maispopulares.html">MAIS POPULARES</a></li>
+            <li><a href="aboutUs.html">SOBRE NÓS</a></li>
+            <li><a href="cadastro_usuario.html">CADASTRE-SE</a></li>
+            <li><a href="login.html">LOGIN</a></li>
+        </ul>
+    </div>
+</div>`;
+    menu.innerHTML = strHtml;
   }
 }
 // Página de Cadastro
@@ -190,7 +192,7 @@ function leDados2() {
     };
     salvarLogin(objLogin);
   }
-  return objLogin
+  return objLogin;
 }
 
 
