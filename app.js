@@ -1,7 +1,7 @@
 //----------------------------------------------------------------
 function carregarPagina(){
   let objLogin = leDados2();
-  if (objLogin.id === '') {
+  if (objLogin.id === "") {
     let menu = document.getElementById('menu');
     strHtml = `<div class="menuprincipal">
     <div class="logo-menu">
@@ -187,7 +187,8 @@ function leDados2() {
           username: ''
         },
       ]
-    }
+    };
+    salvarLogin(objLogin);
   }
   return objLogin
 }
