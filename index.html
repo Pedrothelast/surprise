@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +8,19 @@
     <link rel="stylesheet" href="style.css" class="style">
     <title>Surprise</title>
 </head>
+
 <body class="body-index">
-    <header class="cabecalho" id="menu" >
+    <header class="cabecalho" id="menu">
     </header>
-    <main class="centro" >
+    <main class="centro">
         <div class="surprise-centro-titulo">
             <div class="titulo text-fixo">ENCONTRE</div>
-            <div class="text-dinamico" >
-            <ul>
-                <li><span class="titulo">FILMES</span></li>
-                <li><span class="titulo">SERIES</span></li>
-                <li><span class="titulo">ANIMES</span></li>
-            </ul>
+            <div class="text-dinamico">
+                <ul>
+                    <li><span class="titulo">FILMES</span></li>
+                    <li><span class="titulo">SERIES</span></li>
+                    <li><span class="titulo">ANIMES</span></li>
+                </ul>
             </div>
         </div>
         <div class="surprise-centro">
@@ -28,9 +30,17 @@
     </main>
     <script src="app.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+
+            let usuarioSessao = {
+                id: '',
+                username: ''
+            };
+            salvarLogin(usuarioSessao);
+
             carregarPagina();
         })
     </script>
 </body>
+
 </html>

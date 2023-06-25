@@ -1,6 +1,5 @@
 //----------------------------------------------------------------
 function carregarPagina(){
-  let objDados = leDados1();
   let objLogin = leDados2();
   if (objLogin.id === '') {
     let menu = document.getElementById('menu');
@@ -64,7 +63,8 @@ function leDados1() {
           confirme: 'admin'
         },
       ]
-    }
+    };
+    salvaDados(objDados);
   }
   return objDados
 }
