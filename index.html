@@ -6,32 +6,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" class="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Surprise</title>
 </head>
 
 <body class="body-index">
+    <div class="background-video">
+    <video autoplay muted loop>
+        <source src="fundo.webm" type="video/mp4">
+        Seu navegador não suporta vídeo HTML5.
+    </video>
     <header class="cabecalho" id="menu">
+        <!-- <div class="mobile-menu-icon">
+            <button onclick="menuShow()"><img class="icon" src="menu-icon.png" alt=""></button>
+        </div>
+        <div id="showmenu">
+            </div> -->
     </header>
-    <main class="centro">
-        <div class="surprise-centro-titulo">
-            <div class="titulo text-fixo">ENCONTRE</div>
-            <div class="text-dinamico">
-                <ul>
-                    <li><span class="titulo">FILMES</span></li>
-                    <li><span class="titulo">SERIES</span></li>
-                    <li><span class="titulo">ANIMES</span></li>
-                </ul>
+    
+       
+
+        <main class="centro">
+            <div class="surprise-centro-titulo">
+                <div class="titulo text-fixo">ENCONTRE</div>
+                <div class="text-dinamico">
+                    <ul>
+                        <li><span class="titulo">FILMES</span></li>
+                        <li><span class="titulo">SERIES</span></li>
+                        <li><span class="titulo">ANIMES</span></li>
+                    </ul>
+                </div>
             </div>
+            <div class="surprise-centro">
+                <p class="subtitulo">Não perca seu tempo ao decidir um filme para assistir, se surpreenda!</p>
+                <button class="btn-suprise" onclick="window.location.href='pesquisa.html'">SURPRISE-ME</button>
+            </div>
+        </main>
+    </div>
+    <footer class="rodape">
+        <div class="rod1">
+            <p style="filter: drop-shadow(3px 5px 6px rgb(213, 114, 0)); font-weight: bold; font-size: 20px;">SOCIAL</p>
+            <div class="social">
+            <a href="#"><i class="fab fa-instagram" id="social"></i></a>
+            <a href="#"><i class="fab fa-facebook-f" id="social"></i></a>
+            <a href="#"><i class="fab fa-whatsapp" id="social"></i></a>
+            <a href="#"><i class="fab fa-twitter" id="social"></i></a>
         </div>
-        <div class="surprise-centro">
-            <p class="subtitulo">Não perca seu tempo ao decidir um filme para assistir, se surpreenda!</p>
-            <button class="btn-suprise" onclick="window.location.href='pesquisa.html'">SURPRISE-ME</button>
         </div>
-    </main>
+        <div class="rod2">
+            <p>Termos e Condições</p>
+            <p onclick="window.location.href='aboutUs.html'">Sobre nós</p>
+            <p>Parceiros</p>
+        </div>
+        <div class="rod3">
+            <p style="filter: drop-shadow(3px 5px 6px rgb(213, 114, 0)); font-weight: bold; font-size: 20px;">CONTATO</p>
+            <div class="contact">
+            <p>surprisecontact@gmail.com</p>
+            <p>+1(213)89347-8457</p>
+        </div>
+        </div>
+    </footer>
+
     <script src="app.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-             carregarPagina();
+            carregarPagina();
         })
     </script>
 </body>

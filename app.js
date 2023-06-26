@@ -1,5 +1,5 @@
 //----------------------------------------------------------------
-function carregarPagina(){
+function carregarPagina() {
   let objDados = leDados1();
   let objLogin = leDados2();
   if (objLogin.id >= 1) {
@@ -10,17 +10,17 @@ function carregarPagina(){
     </div>
     <div class="lista-menu">
         <ul class="lista-ul">
-        <li><a href="maispopulares.html">MAIS POPULARES</a></li>
-        <li><a href="aboutUs.html">SOBRE NÓS</a></li>
-            <li><a href="perfil.html">PERFIL</a></li>
-            <li><a onclick="sairLogin()">SAIR</a></li>
+        <li class="link"><a href="maispopulares.html">MAIS POPULARES</a></li>
+        <li class="link"><a href="aboutUs.html">SOBRE NÓS</a></li>
+            <li class="link"><a href="perfil.html">PERFIL</a></li>
+            <li class="link"><a onclick="sairLogin()">SAIR</a></li>
         </ul>
     </div>
 </div>`;
     menu.innerHTML = strHtml;
 
   }
-  
+
   else {
     let menu = document.getElementById('menu');
     strHtml = `<div class="menuprincipal">
@@ -29,10 +29,10 @@ function carregarPagina(){
     </div>
     <div class="lista-menu">
         <ul class="lista-ul">
-        <li><a href="maispopulares.html">MAIS POPULARES</a></li>
-            <li><a href="aboutUs.html">SOBRE NÓS</a></li>
-            <li><a href="cadastro_usuario.html">CADASTRE-SE</a></li>
-            <li><a href="login.html">LOGIN</a></li>
+        <li class="link"><a href="maispopulares.html">MAIS POPULARES</a></li>
+            <li class="link"><a href="aboutUs.html">SOBRE NÓS</a></li>
+            <li class="link"><a href="cadastro_usuario.html">CADASTRE-SE</a></li>
+            <li class="link"><a href="login.html">LOGIN</a></li>
         </ul>
     </div>
 </div>`;
@@ -246,6 +246,8 @@ function mostrarPerfil() {
   document.getElementById('perfil-email').value = objDados.cadastros[objLogin.id - 1].email;
   document.getElementById('perfil-username').value = objDados.cadastros[objLogin.id - 1].username;
   document.getElementById('perfil-data').value = objDados.cadastros[objLogin.id - 1].data;
+
+  cadFilmes();
 }
 
 function alterarPerfil() {
@@ -289,7 +291,16 @@ function excluirCadastro(indice) {
   salvaDados(objDados);
   window.location.href = 'index.html';
 }
+
+function cadFilmes() {
+  let user = document.getElementById('perfil-username').value;
+  let botao = document.getElementById('btn-cadFilmes');
+  if (user === 'admin') {
+    botao.setAttribute('style', 'display:block');
+  }
+}
 //----------------------------------------------------------------
+
 //Cadastro de Filmes
 function lerDados() {
   let strDados = localStorage.getItem('cad');
@@ -301,7 +312,7 @@ function lerDados() {
     objDados = {
       filmes: [
         {
-          id: 1,
+          id: '1',
           img: "https://br.web.img3.acsta.net/c_310_420/medias/nmedia/18/89/43/82/20052140.jpg",
           name: "The Avengers",
           sinopse: "Loki (Tom Hiddleston) retorna à Terra enviado pelos chitauri, uma raça alienígena que pretende dominar os humanos. Com a promessa de que será o soberano do planeta, ele rouba o cubo cósmico dentro de instalações da S.H.I.E.L.D. e, com isso, adquire grandes poderes. Loki os usa para controlar o dr. Erik Selvig (Stellan Skarsgard) e Clint Barton/Gavião Arqueiro (Jeremy Renner), que passam a trabalhar para ele. No intuito de contê-los, Nick Fury (Samuel L. Jackson) convoca um grupo de pessoas com grandes habilidades, mas que jamais haviam trabalhado juntas: Tony Stark/Homem de Ferro (Robert Downey Jr.), Steve Rogers/Capitão América (Chris Evans), Thor (Chris Hemsworth), Bruce Banner/Hulk (Mark Ruffalo) e Natasha Romanoff/Viúva Negra (Scarlett Johansson). Só que, apesar do grande perigo que a Terra corre, não é tão simples assim conter o ego e os interesses de cada um deles para que possam agir em grupo.",
@@ -311,10 +322,12 @@ function lerDados() {
           tags: ["herois", "super-poderes", "Marvel", "Engraçado"],
           direcao: "Joss Whedon",
           elenco: "Robert Downey Jr., Chris Evans, Mark Ruffalo",
-          visualizacao: 0
+          visualizacao: 0,
+          avaliacoes: 1,
+          like: 1
         },
         {
-          id: 2,
+          id: '2',
           img: "https://br.web.img3.acsta.net/c_310_420/pictures/15/02/24/18/27/528824.jpg",
           name: "The Avengers 2",
           sinopse: "Tentanto proteger o planeta de ameaças como as vistas no primeiro Os Vingadores, Tony Stark busca construir um sistema de inteligência artifical que cuidaria da paz mundial. O projeto acaba dando errado e gera o nascimento do Ultron (voz de James Spader). Capitão América (Chris Evans), Homem de Ferro (Robert Downey Jr.), Thor (Chris Hemsworth), Hulk (Mark Ruffalo), Viúva Negra (Scarlett Johansson) e Gavião Arqueiro (Jeremy Renner) terão que se unir para mais uma vez salvar o dia.",
@@ -324,10 +337,12 @@ function lerDados() {
           tags: ["herois", "super-poderes", "Marvel", "Robos", "reviravoltas"],
           direcao: "Joss Whedon",
           elenco: "Robert Downey Jr., Chris Evans, Mark Ruffalo",
-          visualizacao: 0
+          visualizacao: 0,
+          avaliacoes: 1,
+          like: 1
         },
         {
-          id: 3,
+          id: '3',
           img: "https://br.web.img3.acsta.net/c_310_420/pictures/18/03/16/15/08/2019826.jpg",
           name: "The Avengers 3",
           sinopse: "Em Vingadores: Guerra Infinita, Thanos (Josh Brolin) enfim chega à Terra, disposto a reunir as Joias do Infinito. Para enfrentá-lo, os Vingadores precisam unir forças com os Guardiões da Galáxia, ao mesmo tempo em que lidam com desavenças entre alguns de seus integrantes.",
@@ -337,7 +352,9 @@ function lerDados() {
           tags: ["herois", "super-poderes", "Marvel", "Engraçado"],
           direcao: "Joe Russo, Anthony Russo",
           elenco: "Robert Downey Jr., Chris Evans, Mark Ruffalo",
-          visualizacao: 0
+          visualizacao: 0,
+          avaliacoes: 1,
+          like: 1
         }]
 
     }
@@ -494,20 +511,21 @@ function exibirResultados(filmes) {
   let objDados = lerDados();
 
   filmes.forEach(filme => {
-    strHtml += `<div class="filmes">
+    strHtml += `<div class="filmes" onclick="window.location.href='resultado.html?query=${filme.id}'">
       <div class="title-img">
       <h2 style="text-transform: uppercase; width:208px"><strong>${filme.name}</strong></h2><br>
       <img class="capa" src="${filme.img}">
       </div>
       <div class=" info-filmes">
       <p>
-        <strong>Sinopse:</strong> ${filme.sinopse}<br>
-        <strong>Ano:</strong> ${filme.ano}<br>
-        <strong>Tempo:</strong> ${filme.tempo}<br>
-        <strong>Categoria:</strong> ${filme.categoria}<br>
-        <strong>Tags:</strong> ${filme.tags.join(", ")}<br>
-        <strong>Direção:</strong> ${filme.direcao}<br>
-        <strong>Elenco:</strong> ${filme.elenco}
+        <strong style="color:black">Sinopse:</strong> ${filme.sinopse.length > 20 ? filme.sinopse.substring(0, 300).concat('...') : filme.sinopse}<br>
+        
+        <strong style="color:black">Ano:</strong> ${filme.ano}<br>
+        <strong style="color:black">Tempo:</strong> ${filme.tempo}<br>
+        <strong style="color:black">Categoria:</strong> ${filme.categoria}<br>
+        <strong style="color:black">Tags:</strong> ${filme.tags.join(", ")}<br>
+        <strong style="color:black">Direção:</strong> ${filme.direcao}<br>
+        <strong style="color:black">Elenco:</strong> ${filme.elenco}
         </p>
         </div>
         </div>`;
@@ -612,4 +630,13 @@ function editarFilme() {
 
 // configurando botoes
 
-
+// function menuShow(){
+//   let menuMobile = document.querySelector('.mobile-menu');
+//   if (menuMobile.classList.contains('open')){
+//       menuMobile.classList.remove('open');
+//   }
+//   else{
+//       menuMobile.classList.add('open');
+//   }
+//   menuMobile();
+// }

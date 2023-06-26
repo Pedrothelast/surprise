@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css" class="style">
 </head>
 <body class="resultado">
@@ -12,9 +13,9 @@
   </header>
 <div class="barra-pesquisa">
   <div id="formBuscaFilmes">
-  <p>TAGS DE BUSCA:</p> <input type="text" id="inputDados" style="height: 30px; width: 250px;">
+  <p class="tags-pesquisa">BUSCAR POR TAGS:</p> <input type="text" id="inputDados" style="height: 30px; width: 250px;">
   <button id="addTag" >Adicionar tag</button>
-  <button id="limparTags">Limpar Tags</button>
+  <button id="limparTags" onclick="window.location.href='pesquisa.html'">Limpar</button>
   <div id="tagsM" style="margin: 20px;">
 
   </div>
@@ -29,6 +30,29 @@
 <div id="telas2">
 
 </div>
+<footer class="rodape">
+  <div class="rod1">
+      <p style="filter: drop-shadow(3px 5px 6px rgb(213, 114, 0)); font-weight: bold; font-size: 20px;">SOCIAL</p>
+      <div class="social">
+      <a href="#"><i class="fab fa-instagram" id="social"></i></a>
+      <a href="#"><i class="fab fa-facebook-f" id="social"></i></a>
+      <a href="#"><i class="fab fa-whatsapp" id="social"></i></a>
+      <a href="#"><i class="fab fa-twitter" id="social"></i></a>
+  </div>
+  </div>
+  <div class="rod2">
+      <p>Termos e Condições</p>
+      <p onclick="window.location.href='aboutUs.html'">Sobre nós</p>
+      <p>Parceiros</p>
+  </div>
+  <div class="rod3">
+      <p style="filter: drop-shadow(3px 5px 6px rgb(213, 114, 0)); font-weight: bold; font-size: 20px;">CONTATO</p>
+      <div class="contact">
+      <p>surprisecontact@gmail.com</p>
+      <p>+1(213)89347-8457</p>
+  </div>
+  </div>
+</footer>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -42,10 +66,15 @@
 
   botaoSalvar.addEventListener("click", function() {
       const inputDados = document.getElementById("inputDados").value;
+      if(inputDados != ''){
       dados.push(inputDados);
       document.getElementById("inputDados").value = '';
-      document.getElementById("tagsM").innerHTML = dados.map(tag => `<span style="margin: 10px; padding: 10px; background-color: orange; border-radius: 5px;">${tag}</span>`).join('');
+      document.getElementById("tagsM").innerHTML = dados.map(tag => `<span style="margin: 10px; padding: 10px; background-color: rgb(220, 99, 0); color: white; border-radius: 5px;">${tag}</span>`).join('');
       console.log(dados);
+    }
+    else{
+      alert('ok')
+    }
   });
 
   document.getElementById("btnBuscarFilmes").addEventListener('click', function() {

@@ -1,45 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(white 0.5px, transparent 0.5px), radial-gradient(white 0.5px, transparent 0.5px);
-  background-position: 0 0, 50px 50px;
-  background-size: 500px 500px;
-  animation: twinkling 20s linear infinite;
-}
-
-@keyframes twinkling {
-  from {
-    background-position: 0 0, 50px 50px;
-  }
-  to {
-    background-position: -10000px 5000px, 50px 50px;
-  }
-}
-
-
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" class="style">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Document</title>
 </head>
-<body >
-    <div class="stars"></div>
 
+<body class="detalhes-filmes">
+  <header class="cabecalho" id="menu">
+  </header>
+
+  <main id="detalhes-filme">
+
+
+  </main>
+  <footer class="rodape">
+    <div class="rod1">
+      <p style="filter: drop-shadow(3px 5px 6px rgb(213, 114, 0)); font-weight: bold; font-size: 20px;">SOCIAL</p>
+      <div class="social">
+        <a href="#"><i class="fab fa-instagram" id="social"></i></a>
+        <a href="#"><i class="fab fa-facebook-f" id="social"></i></a>
+        <a href="#"><i class="fab fa-whatsapp" id="social"></i></a>
+        <a href="#"><i class="fab fa-twitter" id="social"></i></a>
+      </div>
+    </div>
+    <div class="rod2">
+      <p>Termos e Condições</p>
+      <p onclick="window.location.href='aboutUs.html'">Sobre nós</p>
+      <p>Parceiros</p>
+    </div>
+    <div class="rod3">
+      <p style="filter: drop-shadow(3px 5px 6px rgb(213, 114, 0)); font-weight: bold; font-size: 20px;">CONTATO</p>
+      <div class="contact">
+        <p>surprisecontact@gmail.com</p>
+        <p>+1(213)89347-8457</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      carregarPagina();
+    })
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', exibirDetalhesFilme);
+    function exibirDetalhesFilme() {
+      // Obtém o valor do parâmetro 'id' na URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const filmeId = urlParams.get('query');
+      console.log(filmeId);
+
+      // Verifica se o parâmetro 'id' está presente
+      if (filmeId) {
+        // Obtém os dados dos filmes do localStorage
+        const dadosFilmes = lerDados();
+
+        // Procura o filme com o ID correspondente nos dados
+        var filmeIndex = dadosFilmes.filmes.findIndex(f => f.id.toString() === filmeId);
+        var filme = dadosFilmes.filmes[filmeIndex];
+        var soma = 0;
+        var avaliacao = filme.avaliacoes;
+        var like = filme.like;
+        soma = (like * 100) / avaliacao;
+
+        console.log(soma);
+
+        // Verifica se o filme foi encontrado
+        if (filme) {
+          console.log(filme);
+          // Exibe as informações do filme na página
+          const tela = document.getElementById('detalhes-filme');
+
+          const html = `
+      <button class="btn-voltar" onclick="window.location.href='pesquisa.html'"><img id="voltar" src="seta.png"></button>
+      <div class="detalhes-filme" id="detalhes-filme">
+        <div class="detalhes-imagem">
+        <h2 class="detalhes-titulo" style="white-space: nowrap;">${filme.name}</h2>
+        <img src="${filme.img}" alt="${filme.name}">
+        </div>
+        <div class="detalhes-info">
+        <p class="sinopse"><strong class="detalhes-name">Sinopse:</strong> ${filme.sinopse}</p>
+        <p><strong class="detalhes-name">Ano:</strong> ${filme.ano}</p>
+        <p><strong class="detalhes-name">Tempo:</strong> ${filme.tempo}</p>
+        <p><strong class="detalhes-name">Categoria:</strong> ${filme.categoria}</p>
+        <p><strong class="detalhes-name">Tags:</strong> ${filme.tags.join(', ')}</p>
+        <p><strong class="detalhes-name">Direção:</strong> ${filme.direcao}</p>
+        <p><strong class="detalhes-name">Elenco:</strong> ${filme.elenco}</p>
+        <p class="rating-p" style="color: rgb(213, 114, 0); margin-top:10px;">Deixe sua avaliação</p>
+        <div class="rating">
+          <button class="rate" onclick="avaliarBem(${filmeIndex})"><img class="btn-rate" src="like.png"></button>
+          <button class="rate" onclick="avaliarMal(${filmeIndex})"><img class="btn-rate" src="dislike.png"></button>
+          <p><strong style="color:rgb(220, 99, 0); font-size: 20px; ">${soma.toFixed(2)}%</strong> das pessoas recomendam esse filme!</p>
+        </div>
+        </div>
+      `;
+
+          tela.innerHTML = html;
+        } else {
+          console.log('Filme não encontrado');
+        }
+      } else {
+        console.log('ID do filme não fornecido');
+      }
+    }
+
+    function avaliarBem(filmeIndex) {
+      let objDados = lerDados();
+      objDados.filmes[filmeIndex].avaliacoes += 1;
+      objDados.filmes[filmeIndex].like += 1;
+      salvarDados(objDados);
+      exibirDetalhesFilme();
+
+    }
+
+    function avaliarMal(filmeIndex) {
+      let objDados = lerDados();
+      objDados.filmes[filmeIndex].avaliacoes += 1;
+      salvarDados(objDados);
+      exibirDetalhesFilme();
+    }
+    
+  </script>
 </body>
+
 </html>
