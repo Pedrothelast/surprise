@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" class="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Surprise</title>
+</head>
+
+<body class="body-index">
+    <header class="cabecalho" id="menu">
+    </header>
+    <button class="btn-voltar" onclick="window.location.href='perfil.html'"><img id="voltar" src="seta.png"></button>
+    <main >
+        <table>
+            <thead>
+                <tr>
+                <th>Nome</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Data de Nascimento</th>
+                </tr>
+            </thead>
+            <tbody id="users-table"> 
+            </tbody>
+            </table>
+    </main>
+    <footer class="rodape">
+        <div class="rod1">
+            <p style="filter: drop-shadow(3px 5px 6px rgb(213, 114, 0)); font-weight: bold; font-size: 20px;">SOCIAL</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-instagram" id="social"></i></a>
+                <a href="#"><i class="fab fa-facebook-f" id="social"></i></a>
+                <a href="#"><i class="fab fa-whatsapp" id="social"></i></a>
+                <a href="#"><i class="fab fa-twitter" id="social"></i></a>
+            </div>
+        </div>
+        <div class="rod2">
+            <p onclick="window.location.href='terms.html'">Termos e Condições</p>
+            <p onclick="window.location.href='aboutUs.html'">Sobre nós</p>
+            <p>Parceiros</p>
+        </div>
+        <div class="rod3">
+            <p style="filter: drop-shadow(3px 5px 6px rgb(213, 114, 0)); font-weight: bold; font-size: 20px;">CONTATO
+            </p>
+            <div class="contact">
+                <p>surprisecontact@gmail.com</p>
+                <p>+1(213)89347-8457</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            carregarPagina();
+            usersTable();
+        })
+        function usersTable() {
+            let strUsers = document.getElementById('users-table');
+            let strHtml = '';
+            let objDados = leDados1();
+            for (i = 0; i < objDados.cadastros.length; i++) {
+                strHtml += `
+                        <tr>
+                        <td>${objDados.cadastros[i].nome}</td>
+                        <td>${objDados.cadastros[i].username}</td>
+                        <td>${objDados.cadastros[i].email}</td>
+                        <td>${objDados.cadastros[i].data}</td>
+                        </tr>`;
+            }objDados.cadastros[i]
+
+            strUsers.innerHTML = strHtml;
+        }
+    </script>
+
+
+</html>

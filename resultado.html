@@ -12,10 +12,8 @@
 <body class="detalhes-filmes">
   <header class="cabecalho" id="menu">
   </header>
-
+  <button class="btn-voltar" onclick="window.location.href='pesquisa.html'"><img id="voltar" src="seta.png"></button>
   <main id="detalhes-filme">
-
-
   </main>
   <footer class="rodape">
     <div class="rod1">
@@ -28,7 +26,7 @@
       </div>
     </div>
     <div class="rod2">
-      <p>Termos e Condições</p>
+      <p onclick="window.location.href='terms.html'">Termos e Condições</p>
       <p onclick="window.location.href='aboutUs.html'">Sobre nós</p>
       <p>Parceiros</p>
     </div>
@@ -77,8 +75,8 @@
           const tela = document.getElementById('detalhes-filme');
 
           const html = `
-      <button class="btn-voltar" onclick="window.location.href='pesquisa.html'"><img id="voltar" src="seta.png"></button>
-      <div class="detalhes-filme" id="detalhes-filme">
+      
+      <div class="detalhes-film" id="detalhes-filme">
         <div class="detalhes-imagem">
         <h2 class="detalhes-titulo" style="white-space: nowrap;">${filme.name}</h2>
         <img src="${filme.img}" alt="${filme.name}">
@@ -93,8 +91,8 @@
         <p><strong class="detalhes-name">Elenco:</strong> ${filme.elenco}</p>
         <p class="rating-p" style="color: rgb(213, 114, 0); margin-top:10px;">Deixe sua avaliação</p>
         <div class="rating">
-          <button class="rate" onclick="avaliarBem(${filmeIndex})"><img class="btn-rate" src="like.png"></button>
-          <button class="rate" onclick="avaliarMal(${filmeIndex})"><img class="btn-rate" src="dislike.png"></button>
+          <button class="rate1" onclick="avaliarBem(${filmeIndex})"><img class="btn-rate" src="like.png"></button>
+          <button class="rate2" onclick="avaliarMal(${filmeIndex})"><img class="btn-rate" src="dislike.png"></button>
           <p><strong style="color:rgb(220, 99, 0); font-size: 20px; ">${soma.toFixed(2)}%</strong> das pessoas recomendam esse filme!</p>
         </div>
         </div>

@@ -1,4 +1,14 @@
 //----------------------------------------------------------------
+function menuShow() {
+  let menuMobile = document.querySelector('.mobile-menu');
+  if (menuMobile.classList.contains('open')) {
+    menuMobile.classList.remove('open');
+    menuMobile.classList.add('closing');
+  } else {
+    menuMobile.classList.add('open');
+    menuMobile.classList.remove('closing');
+  }
+}
 function carregarPagina() {
   let objDados = leDados1();
   let objLogin = leDados2();
@@ -16,6 +26,17 @@ function carregarPagina() {
             <li class="link"><a onclick="sairLogin()">SAIR</a></li>
         </ul>
     </div>
+    <div class="mobile-menu-icon">
+            <button onclick="menuShow()"><img class="icon" src="menu-icon.png" alt=""></button>
+        </div>
+        <div class="mobile-menu">
+        <ul class="lista-ul">
+        <li class="link"><a href="maispopulares.html">MAIS POPULARES</a></li>
+        <li class="link"><a href="aboutUs.html">SOBRE NÓS</a></li>
+            <li class="link"><a href="perfil.html">PERFIL</a></li>
+            <li class="link"><a onclick="sairLogin()">SAIR</a></li>
+        </ul>
+            </div>
 </div>`;
     menu.innerHTML = strHtml;
 
@@ -35,10 +56,22 @@ function carregarPagina() {
             <li class="link"><a href="login.html">LOGIN</a></li>
         </ul>
     </div>
+    <div class="mobile-menu-icon">
+            <button onclick="menuShow()"><img class="icon" src="menu-icon.png" alt=""></button>
+        </div>
+        <div class="mobile-menu">
+        <ul class="lista-ul">
+        <li class="link"><a href="maispopulares.html">MAIS POPULARES</a></li>
+        <li class="link"><a href="aboutUs.html">SOBRE NÓS</a></li>
+        <li class="link"><a href="cadastro_usuario.html">CADASTRE-SE</a></li>
+        <li class="link"><a href="login.html">LOGIN</a></li>
+        </ul>
+            </div>
 </div>`;
     menu.innerHTML = strHtml;
   }
 }
+
 // Página de Cadastro
 
 //FORMULÁRIO DE CADASTRO
@@ -207,24 +240,27 @@ function dadosLogin() {
   let password = document.getElementById('password').value;
 
   for (let i = 0; i < objDados.cadastros.length; i++) {
-    if ((objDados.cadastros[i].username === username && objDados.cadastros[i].username != '') && (objDados.cadastros[i].senha === password && objDados.cadastros[i].senha != '')) {
+    if (
+      ((objDados.cadastros[i].username === username && username !== '') ||
+        (objDados.cadastros[i].email === username)) && objDados.cadastros[i].senha === password && password !== '') {
       let msglogin = document.querySelector('#msglogin');
       msglogin.setAttribute('style', 'display:block');
       msglogin.innerHTML = '<strong>Seja bem vindo</strong>';
       setTimeout(() => {
-        msgerrologin.setAttribute('style', 'display:none');
+        msglogin.setAttribute('style', 'display:none');
       }, 2700);
 
       let usuarioSessao = {
         id: objDados.cadastros[i].id,
-        username: objDados.cadastros[i].username
+        username: objDados.cadastros[i].username,
       };
       salvarLogin(usuarioSessao);
 
-      setTimeout(() => { window.location.href = 'index.html'; }, 2700);
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2700);
       return;
     }
-
   }
 
   let msgerrologin = document.querySelector('#msgerrologin');
@@ -234,6 +270,8 @@ function dadosLogin() {
     msgerrologin.setAttribute('style', 'display:none');
   }, 2700);
 }
+
+
 // -----------------------------------------------------------------
 // FUNÇAO PAGINA INICIAL
 
@@ -295,8 +333,10 @@ function excluirCadastro(indice) {
 function cadFilmes() {
   let user = document.getElementById('perfil-username').value;
   let botao = document.getElementById('btn-cadFilmes');
+  let botaoDados = document.getElementById('btn-users-tb');
   if (user === 'admin') {
     botao.setAttribute('style', 'display:block');
+    botaoDados.setAttribute('style', 'display:block');
   }
 }
 //----------------------------------------------------------------
@@ -630,13 +670,4 @@ function editarFilme() {
 
 // configurando botoes
 
-// function menuShow(){
-//   let menuMobile = document.querySelector('.mobile-menu');
-//   if (menuMobile.classList.contains('open')){
-//       menuMobile.classList.remove('open');
-//   }
-//   else{
-//       menuMobile.classList.add('open');
-//   }
-//   menuMobile();
-// }
+
