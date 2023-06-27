@@ -27,7 +27,7 @@ function carregarPagina() {
         </ul>
     </div>
     <div class="mobile-menu-icon">
-            <button onclick="menuShow()"><img class="icon" src="./assests/menu-icon.png" alt=""></button>
+            <button onclick="menuShow()"><img class="icon" src="./assets/menu-icon.png" alt=""></button>
         </div>
         <div class="mobile-menu">
         <ul class="lista-ul">
