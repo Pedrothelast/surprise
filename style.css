@@ -998,6 +998,7 @@ div .filmes div .title-img {
 
 div.filmes div.info-filmes {
     display: flex;
+    flex-direction: column;
 }
 
 div .filmes:hover {
@@ -1070,6 +1071,7 @@ Pagina de detalhes */
 #detalhes-filme {
     display: flex;
     justify-content: center;
+    align-items: center;
 
 }
 
@@ -1094,7 +1096,7 @@ Pagina de detalhes */
 .detalhes-info {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: top;
     margin-top: 53px;
 
 }
