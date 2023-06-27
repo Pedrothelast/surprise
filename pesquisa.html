@@ -61,21 +61,35 @@
 </script>
 <script src="app.js"></script>
 <script>
-  const botaoSalvar = document.getElementById("addTag");
-  const dados = [];
+const botaoSalvar = document.getElementById("addTag");
+const dados = [];
 
-  botaoSalvar.addEventListener("click", function() {
-      const inputDados = document.getElementById("inputDados").value;
-      if(inputDados != ''){
-      dados.push(inputDados);
-      document.getElementById("inputDados").value = '';
-      document.getElementById("tagsM").innerHTML = dados.map(tag => `<span style="margin: 10px; padding: 10px; background-color: rgb(220, 99, 0); color: white; border-radius: 5px;">${tag}</span>`).join('');
-      console.log(dados);
-    }
-    else{
-      alert('ok')
-    }
-  });
+botaoSalvar.addEventListener("click", function() {
+  const inputDados = document.getElementById("inputDados").value;
+  if (inputDados !== '') {
+    dados.push(inputDados);
+    document.getElementById("inputDados").value = '';
+    exibirTags();
+  }
+});
+
+function exibirTags() {
+  const tagsHtml = dados
+    .filter(tag => tag !== '')
+    .map(tag => `<span onclick="removerTag('${tag}')" style="cursor: pointer; margin: 10px; padding: 10px; background-color: rgb(220, 99, 0); color: white; border-radius: 5px;">${tag} <strong style="color:black;">X</strong></span>`)
+    .join('');
+  document.getElementById("tagsM").innerHTML = tagsHtml;
+}
+
+function removerTag(tag) {
+  const index = dados.indexOf(tag);
+  if (index > -1) {
+    dados.splice(index, 1);
+    exibirTags();
+  }
+}
+
+
 
   document.getElementById("btnBuscarFilmes").addEventListener('click', function() {
       var tags = dados.join(', ');
