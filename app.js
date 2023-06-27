@@ -16,7 +16,7 @@ function carregarPagina() {
     let menu = document.getElementById('menu');
     strHtml = `<div class="menuprincipal">
     <div class="logo-menu">
-    <img src="logo.png" alt="logo" width="170px" onclick="window.location.href = 'index.html'">
+    <img src="./assets/logo.png" alt="logo" width="170px" onclick="window.location.href = 'index.html'">
     </div>
     <div class="lista-menu">
         <ul class="lista-ul">
@@ -27,7 +27,7 @@ function carregarPagina() {
         </ul>
     </div>
     <div class="mobile-menu-icon">
-            <button onclick="menuShow()"><img class="icon" src="menu-icon.png" alt=""></button>
+            <button onclick="menuShow()"><img class="icon" src="./assests/menu-icon.png" alt=""></button>
         </div>
         <div class="mobile-menu">
         <ul class="lista-ul">
@@ -46,7 +46,7 @@ function carregarPagina() {
     let menu = document.getElementById('menu');
     strHtml = `<div class="menuprincipal">
     <div class="logo-menu">
-        <img src="logo.png" alt="logo" width="170px" onclick="window.location.href = 'index.html'">
+        <img src="./assets/logo.png" alt="logo" width="170px" onclick="window.location.href = 'index.html'">
     </div>
     <div class="lista-menu">
         <ul class="lista-ul">
@@ -57,7 +57,7 @@ function carregarPagina() {
         </ul>
     </div>
     <div class="mobile-menu-icon">
-            <button onclick="menuShow()"><img class="icon" src="menu-icon.png" alt=""></button>
+            <button onclick="menuShow()"><img class="icon" src="./assets/menu-icon.png" alt=""></button>
         </div>
         <div class="mobile-menu">
         <ul class="lista-ul">

@@ -12,7 +12,7 @@
 <body class="detalhes-filmes">
   <header class="cabecalho" id="menu">
   </header>
-  <button class="btn-voltar" onclick="window.location.href='pesquisa.html'"><img id="voltar" src="seta.png"></button>
+  <button class="btn-voltar" onclick="window.location.href='pesquisa.html'"><img id="voltar" src="./assets/seta.png"></button>
   <main id="detalhes-filme">
   </main>
   <footer class="rodape">
@@ -91,8 +91,8 @@
         <p><strong class="detalhes-name">Elenco:</strong> ${filme.elenco}</p>
         <p class="rating-p" style="color: rgb(213, 114, 0); margin-top:10px;">Deixe sua avaliação</p>
         <div class="rating">
-          <button class="rate1" onclick="avaliarBem(${filmeIndex})"><img class="btn-rate" src="like.png"></button>
-          <button class="rate2" onclick="avaliarMal(${filmeIndex})"><img class="btn-rate" src="dislike.png"></button>
+          <button class="rate1" onclick="avaliarBem(${filmeIndex})"><img class="btn-rate" src="./assets/like.png"></button>
+          <button class="rate2" onclick="avaliarMal(${filmeIndex})"><img class="btn-rate" src="./assets/dislike.png"></button>
           <p><strong style="color:rgb(220, 99, 0); font-size: 20px; ">${soma.toFixed(2)}%</strong> das pessoas recomendam esse filme!</p>
         </div>
         </div>
