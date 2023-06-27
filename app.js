@@ -545,43 +545,67 @@ document.getElementById('limparTags').addEventListener('click', function () {
 
   return filmesEncontrados;
 }*/
-function exibirResultados(filmes) {
+function exibirResultados(filmes, tags) {
   let tela = document.getElementById('telas');
   let strHtml = '';
   let objDados = lerDados();
 
+  // Ordenar os filmes com base no maior número de tags destacadas em ordem decrescente
+  filmes.sort((a, b) => contarTagsDestacadas(b.tags, tags) - contarTagsDestacadas(a.tags, tags));
+
   filmes.forEach(filme => {
     strHtml += `<div class="filmes" onclick="window.location.href='resultado.html?query=${filme.id}'">
       <div class="title-img">
-      <h2 style="text-transform: uppercase; width:208px"><strong>${filme.name}</strong></h2><br>
-      <img class="capa" src="${filme.img}">
+        <h2 style="text-transform: uppercase; width:208px"><strong>${filme.name}</strong></h2><br>
+        <img class="capa" src="${filme.img}">
       </div>
-      <div class=" info-filmes">
-      <p>
-        <strong style="color:black">Sinopse:</strong> ${filme.sinopse.length > 20 ? filme.sinopse.substring(0, 300).concat('...') : filme.sinopse}<br>
-        
-        <strong style="color:black">Ano:</strong> ${filme.ano}<br>
-        <strong style="color:black">Tempo:</strong> ${filme.tempo}<br>
-        <strong style="color:black">Categoria:</strong> ${filme.categoria}<br>
-        <strong style="color:black">Tags:</strong> ${filme.tags.join(", ")}<br>
-        <strong style="color:black">Direção:</strong> ${filme.direcao}<br>
-        <strong style="color:black">Elenco:</strong> ${filme.elenco}
+      <div class="info-filmes">
+        <p>
+          <strong style="color:black">Sinopse:</strong> ${filme.sinopse.length > 20 ? filme.sinopse.substring(0, 300).concat('...') : filme.sinopse}<br>
+          <strong style="color:black">Ano:</strong> ${filme.ano}<br>
+          <strong style="color:black">Tempo:</strong> ${filme.tempo}<br>
+          <strong style="color:black">Categoria:</strong> ${filme.categoria}<br>
+          <strong style="color:black">Tags:</strong> ${destacarTags(filme.tags, tags)}<br>
+          <strong style="color:black">Direção:</strong> ${filme.direcao}<br>
+          <strong style="color:black">Elenco:</strong> ${filme.elenco}
         </p>
-        </div>
-        </div>`;
+      </div>
+    </div>`;
+
     for (i = 0; i < objDados.filmes.length; i++) {
       if (filme.name == objDados.filmes[i].name) {
         objDados.filmes[i].visualizacao++;
       }
     }
-
-
-  }
-  );
+  });
 
   salvarDados(objDados);
   tela.innerHTML = strHtml;
 }
+
+function destacarTags(tagsFilme, tagsDestaque) {
+  const tagsHtml = tagsFilme
+    .map(tag => {
+      const destacada = tagsDestaque.includes(tag) ? 'tagDestacada' : '';
+      return `<span class="${destacada}">${tag}</span>`;
+    })
+    .join(', ');
+
+  return tagsHtml;
+}
+
+function contarTagsDestacadas(tagsFilme, tagsDestaque) {
+  let contador = 0;
+
+  tagsFilme.forEach(tag => {
+    if (tagsDestaque.includes(tag)) {
+      contador++;
+    }
+  });
+
+  return contador;
+}
+
 
 function buscarFilmesPorVisualizacoes() {
   let objDados = lerDados();
@@ -595,23 +619,29 @@ function buscarFilmesPorVisualizacoes() {
 }
 
 function exibirResultadosV(filmes) {
-  let tela = document.getElementById('telas2');
+  let tela = document.getElementById('lista-filmespopulares');
   let strHtml = '';
 
   filmes.forEach(filme => {
     strHtml += `
-    <img class="capa" src="${filme.img}">
-    <p>
-      Nome: ${filme.name}<br>
-      Sinopse: ${filme.sinopse}<br>
-      Ano: ${filme.ano}<br>
-      Tempo: ${filme.tempo}<br>
-      Categoria: ${filme.categoria}<br>
-      Tags: ${filme.tags.join(", ")}<br>
-      Direção: ${filme.direcao}<br>
-      Elenco: ${filme.elenco}<br>
-      Visualizações: ${filme.visualizacao}
-    </p>`;
+    <div class="filmes" onclick="window.location.href='resultado.html?query=${filme.id}'">
+      <div class="title-img">
+        <h2 style="text-transform: uppercase; width:208px"><strong>${filme.name}</strong></h2><br>
+        <img class="capa" src="${filme.img}">
+      </div>
+      <div class="info-filmes">
+        <p>
+          <strong style="color:black">Sinopse:</strong> ${filme.sinopse.length > 20 ? filme.sinopse.substring(0, 300).concat('...') : filme.sinopse}<br>
+          <strong style="color:black">Ano:</strong> ${filme.ano}<br>
+          <strong style="color:black">Tempo:</strong> ${filme.tempo}<br>
+          <strong style="color:black">Categoria:</strong> ${filme.categoria}<br>
+          <strong style="color:black">Tags:</strong> ${filme.tags}<br>
+          <strong style="color:black">Direção:</strong> ${filme.direcao}<br>
+          <strong style="color:black">Elenco:</strong> ${filme.elenco}<br>
+          <strong style="color:black">Visualizações:</strong> ${filme.visualizacao}
+        </p>
+      </div>
+    </div>`;
   });
 
   tela.innerHTML = strHtml;

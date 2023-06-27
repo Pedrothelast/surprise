@@ -15,7 +15,6 @@
   <div id="formBuscaFilmes">
   <p class="tags-pesquisa">BUSCAR POR TAGS:</p> <input type="text" id="inputDados" style="height: 30px; width: 250px;">
   <button id="addTag" >Adicionar tag</button>
-  <button id="limparTags" onclick="window.location.href='pesquisa.html'">Limpar</button>
   <div id="tagsM" style="margin: 20px;">
 
   </div>
@@ -91,13 +90,12 @@ function removerTag(tag) {
 
 
 
-  document.getElementById("btnBuscarFilmes").addEventListener('click', function() {
-      var tags = dados.join(', ');
-      var filmesEncontrados = buscarFilmesPorTags(tags);
-      exibirResultados(filmesEncontrados);
-     // let filmes2 = buscarFilmesPorVisualizacoes();
-     // exibirResultadosV(filmes2);
-  });
+document.getElementById("btnBuscarFilmes").addEventListener('click', function() {
+  var tags = dados.join(', ');
+  var filmesEncontrados = buscarFilmesPorTags(tags);
+  exibirResultados(filmesEncontrados, dados); // Passe o array 'dados' como segundo argumento
+});
+
 </script>
 <script>
 //     const botaoSalvar = document.getElementById("addTag");

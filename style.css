@@ -988,6 +988,7 @@ div .filmes {
     flex-direction: row;
     text-align: justify;
     gap: 40px;
+    font-weight: 500;
 }
 
 div .filmes div .title-img {
@@ -1052,7 +1053,7 @@ div .filmes:hover {
     cursor: pointer;
 }
 
-#telas {
+#lista-filmespopulares {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -1451,6 +1452,16 @@ table {
       display: block;
       margin-bottom: 5px;
     }
+  }
+  
+
+  
+  .tagDestacada {
+    color: white;
+    background-color: rgb(0, 0, 0);
+    padding: 3px;
+    border-radius: 10px;
+    
   }
   
   
